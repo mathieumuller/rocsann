@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: version.xml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -29,6 +30,9 @@ framework:
         handler_id: ~
     fragments: { path: /_fragment }
     http_method_override: true
+    assets:
+        version: '%version%'
+        version_format: '%%s?version=%%s'
 
 # Twig Configuration
 twig:
@@ -64,3 +68,20 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: false
+    node: "%nodejs_path%"
+    node_paths: ["/usr/local/lib/node_modules"]
+    filters:
+        cssrewrite:
+            apply_to: '\.(css|less)$'
+        less:
+            apply_to: '\.less$'
+        uglifycss:
+            bin: /usr/local/bin/uglifycss
+            apply_to: '\.(css|less)$'
+        uglifyjs2:
+            bin: /usr/local/bin/uglifyjs
+            apply_to: '\.js$'
