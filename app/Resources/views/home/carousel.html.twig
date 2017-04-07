@@ -1,0 +1,16 @@
+<div class="carousel" id="diaporama">
+    {% for item in items %}
+        {% set imageUrl = '/public/images/' ~ item.photo %}
+        <div class="card carousel-item" href="#{{ item.idCrea }}">
+            <div class="card-image">
+               <img src="{{ imageUrl }}" alt="...">
+            </div>
+            <div class="card-content no-padding" style="overflow: hidden">
+                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">shopping_cart</i></a>
+            </div>
+            <div class="card-action">
+                <p>{{ item.descrcrea }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>

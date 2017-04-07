@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Crea
+ * Crea.
  *
  * @ORM\Table(name="crea", indexes={@ORM\Index(name="FK_crea_idProduit", columns={"idProduit"})})
  * @ORM\Entity
@@ -15,19 +15,19 @@ class Crea
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="blob", length=65535, nullable=true)
+     * @ORM\Column(name="photo", type="string", nullable=true)
      */
     private $photo;
 
     /**
-     * @var integer
+     * @var bool
      *
-     * @ORM\Column(name="diapo", type="integer", nullable=true)
+     * @ORM\Column(name="diapo", type="boolean", nullable=true)
      */
     private $diapo;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="prix", type="integer", nullable=true)
      */
@@ -83,7 +83,7 @@ class Crea
     private $broderie;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="idCrea", type="integer")
      * @ORM\Id
@@ -109,18 +109,18 @@ class Crea
     private $idaccess;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
         $this->idaccess = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     /**
-     * Set photo
+     * Set photo.
      *
      * @param string $photo
+     *
      * @return Crea
      */
     public function setPhoto($photo)
@@ -131,9 +131,9 @@ class Crea
     }
 
     /**
-     * Get photo
+     * Get photo.
      *
-     * @return string 
+     * @return string
      */
     public function getPhoto()
     {
@@ -141,9 +141,10 @@ class Crea
     }
 
     /**
-     * Set diapo
+     * Set diapo.
      *
-     * @param integer $diapo
+     * @param int $diapo
+     *
      * @return Crea
      */
     public function setDiapo($diapo)
@@ -154,9 +155,9 @@ class Crea
     }
 
     /**
-     * Get diapo
+     * Get diapo.
      *
-     * @return integer 
+     * @return int
      */
     public function getDiapo()
     {
@@ -164,9 +165,10 @@ class Crea
     }
 
     /**
-     * Set prix
+     * Set prix.
      *
-     * @param integer $prix
+     * @param int $prix
+     *
      * @return Crea
      */
     public function setPrix($prix)
@@ -177,9 +179,9 @@ class Crea
     }
 
     /**
-     * Get prix
+     * Get prix.
      *
-     * @return integer 
+     * @return int
      */
     public function getPrix()
     {
@@ -187,9 +189,10 @@ class Crea
     }
 
     /**
-     * Set descrcrea
+     * Set descrcrea.
      *
      * @param string $descrcrea
+     *
      * @return Crea
      */
     public function setDescrcrea($descrcrea)
@@ -200,9 +203,9 @@ class Crea
     }
 
     /**
-     * Get descrcrea
+     * Get descrcrea.
      *
-     * @return string 
+     * @return string
      */
     public function getDescrcrea()
     {
@@ -210,9 +213,10 @@ class Crea
     }
 
     /**
-     * Set couleur
+     * Set couleur.
      *
      * @param string $couleur
+     *
      * @return Crea
      */
     public function setCouleur($couleur)
@@ -223,9 +227,9 @@ class Crea
     }
 
     /**
-     * Get couleur
+     * Get couleur.
      *
-     * @return string 
+     * @return string
      */
     public function getCouleur()
     {
@@ -233,9 +237,10 @@ class Crea
     }
 
     /**
-     * Set matiere
+     * Set matiere.
      *
      * @param string $matiere
+     *
      * @return Crea
      */
     public function setMatiere($matiere)
@@ -246,9 +251,9 @@ class Crea
     }
 
     /**
-     * Get matiere
+     * Get matiere.
      *
-     * @return string 
+     * @return string
      */
     public function getMatiere()
     {
@@ -256,9 +261,10 @@ class Crea
     }
 
     /**
-     * Set bordure
+     * Set bordure.
      *
      * @param string $bordure
+     *
      * @return Crea
      */
     public function setBordure($bordure)
@@ -269,9 +275,9 @@ class Crea
     }
 
     /**
-     * Get bordure
+     * Get bordure.
      *
-     * @return string 
+     * @return string
      */
     public function getBordure()
     {
@@ -279,9 +285,10 @@ class Crea
     }
 
     /**
-     * Set galon
+     * Set galon.
      *
      * @param string $galon
+     *
      * @return Crea
      */
     public function setGalon($galon)
@@ -292,9 +299,9 @@ class Crea
     }
 
     /**
-     * Get galon
+     * Get galon.
      *
-     * @return string 
+     * @return string
      */
     public function getGalon()
     {
@@ -302,9 +309,10 @@ class Crea
     }
 
     /**
-     * Set frange
+     * Set frange.
      *
      * @param string $frange
+     *
      * @return Crea
      */
     public function setFrange($frange)
@@ -315,9 +323,9 @@ class Crea
     }
 
     /**
-     * Get frange
+     * Get frange.
      *
-     * @return string 
+     * @return string
      */
     public function getFrange()
     {
@@ -325,9 +333,10 @@ class Crea
     }
 
     /**
-     * Set broderie
+     * Set broderie.
      *
      * @param string $broderie
+     *
      * @return Crea
      */
     public function setBroderie($broderie)
@@ -338,9 +347,9 @@ class Crea
     }
 
     /**
-     * Get broderie
+     * Get broderie.
      *
-     * @return string 
+     * @return string
      */
     public function getBroderie()
     {
@@ -348,9 +357,9 @@ class Crea
     }
 
     /**
-     * Get idcrea
+     * Get idcrea.
      *
-     * @return integer 
+     * @return int
      */
     public function getIdcrea()
     {
@@ -358,9 +367,10 @@ class Crea
     }
 
     /**
-     * Set idproduit
+     * Set idproduit.
      *
      * @param \AppBundle\Entity\Produit $idproduit
+     *
      * @return Crea
      */
     public function setIdproduit(\AppBundle\Entity\Produit $idproduit = null)
@@ -371,9 +381,9 @@ class Crea
     }
 
     /**
-     * Get idproduit
+     * Get idproduit.
      *
-     * @return \AppBundle\Entity\Produit 
+     * @return \AppBundle\Entity\Produit
      */
     public function getIdproduit()
     {
@@ -381,9 +391,10 @@ class Crea
     }
 
     /**
-     * Add idaccess
+     * Add idaccess.
      *
      * @param \AppBundle\Entity\Accessoire $idaccess
+     *
      * @return Crea
      */
     public function addIdaccess(\AppBundle\Entity\Accessoire $idaccess)
@@ -394,7 +405,7 @@ class Crea
     }
 
     /**
-     * Remove idaccess
+     * Remove idaccess.
      *
      * @param \AppBundle\Entity\Accessoire $idaccess
      */
@@ -404,9 +415,9 @@ class Crea
     }
 
     /**
-     * Get idaccess
+     * Get idaccess.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdaccess()
     {

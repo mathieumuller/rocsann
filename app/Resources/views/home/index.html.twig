@@ -1,5 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="row homepage-body">
+        <div class="col s8 m8">
+            {{ render_esi(url("carousel")) }}
+        </div>
+
+        <div class="col s4 m4">
+            <div>
+                {{ render_esi(url("guest-book")) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts 'assets/app/js/home.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
 

@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Livre
+ * Livre.
  *
  * @ORM\Table(name="livre", indexes={@ORM\Index(name="FK_livre_idUtil", columns={"idUtil"})})
  * @ORM\Entity
@@ -34,7 +34,7 @@ class Livre
     private $signlivr;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="idLiv", type="integer")
      * @ORM\Id
@@ -50,14 +50,13 @@ class Livre
      *   @ORM\JoinColumn(name="idUtil", referencedColumnName="idUtil")
      * })
      */
-    private $idutil;
-
-
+    private $user;
 
     /**
-     * Set msgliv
+     * Set msgliv.
      *
      * @param string $msgliv
+     *
      * @return Livre
      */
     public function setMsgliv($msgliv)
@@ -68,9 +67,9 @@ class Livre
     }
 
     /**
-     * Get msgliv
+     * Get msgliv.
      *
-     * @return string 
+     * @return string
      */
     public function getMsgliv()
     {
@@ -78,9 +77,10 @@ class Livre
     }
 
     /**
-     * Set datliv
+     * Set datliv.
      *
      * @param \DateTime $datliv
+     *
      * @return Livre
      */
     public function setDatliv($datliv)
@@ -91,9 +91,9 @@ class Livre
     }
 
     /**
-     * Get datliv
+     * Get datliv.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDatliv()
     {
@@ -101,9 +101,10 @@ class Livre
     }
 
     /**
-     * Set signlivr
+     * Set signlivr.
      *
      * @param string $signlivr
+     *
      * @return Livre
      */
     public function setSignlivr($signlivr)
@@ -114,9 +115,9 @@ class Livre
     }
 
     /**
-     * Get signlivr
+     * Get signlivr.
      *
-     * @return string 
+     * @return string
      */
     public function getSignlivr()
     {
@@ -124,9 +125,9 @@ class Livre
     }
 
     /**
-     * Get idliv
+     * Get idliv.
      *
-     * @return integer 
+     * @return int
      */
     public function getIdliv()
     {
@@ -134,25 +135,26 @@ class Livre
     }
 
     /**
-     * Set idutil
+     * Gets the }).
      *
-     * @param \AppBundle\Entity\Utilisateur $idutil
-     * @return Livre
+     * @return \AppBundle\Entity\Utilisateur
      */
-    public function setIdutil(\AppBundle\Entity\Utilisateur $idutil = null)
+    public function getUser()
     {
-        $this->idutil = $idutil;
-
-        return $this;
+        return $this->user;
     }
 
     /**
-     * Get idutil
+     * Sets the }).
      *
-     * @return \AppBundle\Entity\Utilisateur 
+     * @param \AppBundle\Entity\Utilisateur $user the user
+     *
+     * @return self
      */
-    public function getIdutil()
+    public function setUser(\AppBundle\Entity\Utilisateur $user)
     {
-        return $this->idutil;
+        $this->user = $user;
+
+        return $this;
     }
 }
