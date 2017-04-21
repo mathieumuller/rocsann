@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Produit.
@@ -31,7 +32,7 @@ class Categorie
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=5, nullable=false, unique=true)
+     * @ORM\Column(name="code", type="string", length=20, nullable=false, unique=true)
      */
     protected $code;
 
@@ -46,6 +47,11 @@ class Categorie
     public function __construct()
     {
         $this->realisations = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getLibelle();
     }
 
     /**

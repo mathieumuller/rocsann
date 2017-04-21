@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Configuration.
  *
  * @ORM\Table(name="configuration")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ConfigurationRepository")
  */
 class Configuration
 {
@@ -325,6 +325,38 @@ class Configuration
     public function setAgrements($agrements)
     {
         $this->agrements = $agrements;
+
+        return $this;
+    }
+
+    /**
+     * Adds an Agrement.
+     *
+     * @param Agrement $agrement the agrement
+     *
+     * @return self
+     */
+    public function addAgrement(Agrement $agrement)
+    {
+        if (!$this->agrements->contains($agrement)) {
+            $this->agrements->add($agrement);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Removes an Agrement.
+     *
+     * @param Agrement $agrement the agrement
+     *
+     * @return self
+     */
+    public function removeAgrement(Agrement $agrement)
+    {
+        if ($this->agrements->contains($agrement)) {
+            $this->agrements->removeElement($agrement);
+        }
 
         return $this;
     }

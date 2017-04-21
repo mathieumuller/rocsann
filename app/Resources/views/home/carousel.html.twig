@@ -1,10 +1,9 @@
 <h2>Dernières créations</h2>
 <div class="diaporama padding-m">
     {% for item in items %}
-        {% set imageUrl = '/public/images/' ~ item.photo %}
       <div class="card padding-m">
           <div class="card-image">
-              <img src="{{ imageUrl }}" alt="...">
+              <img src="{{ item.photoUrl }}" alt="...">
               <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">shopping_cart</i></a>
           </div>
           <div class="card-content">

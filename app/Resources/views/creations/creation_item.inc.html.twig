@@ -1,0 +1,23 @@
+{% set colWidth = 12/rowItems %}
+{% set endRowAt = 12/colWidth %}
+
+{% for creation in creations %}
+    <div class="col s{{ colWidth }}">
+        <div class="card horizontal creation-item">
+            <div class="card-image">
+                <img src="{{ creation.photoUrl }}" alt="{{ creation.id }}">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <p>{{ creation.description }}</p>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="btn-floating waves-effect waves-light red right">
+                        <i class="material-icons">shopping_cart</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+{% endfor %}

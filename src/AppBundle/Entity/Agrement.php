@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Traits\TimeAwareEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Agrement.
@@ -28,7 +29,7 @@ class Agrement
     /**
      * @var string
      *
-     * @ORM\Column(name="libAccess", type="string", length=30, nullable=false)
+     * @ORM\Column(name="libelle", type="string", length=30, nullable=false, unique=true)
      */
     private $libelle;
 
@@ -52,104 +53,116 @@ class Agrement
     private $configurations;
 
     /**
-     * Set libaccess.
-     *
-     * @param string $libaccess
-     *
-     * @return Accessoire
+     * Constructor.
      */
-    public function setLibaccess($libaccess)
+    public function __construct()
     {
-        $this->libaccess = $libaccess;
-
-        return $this;
+        $this->configurations = new ArrayCollection();
     }
 
     /**
-     * Get libaccess.
-     *
-     * @return string
-     */
-    public function getLibaccess()
-    {
-        return $this->libaccess;
-    }
-
-    /**
-     * Get idaccess.
+     * Gets the value of id.
      *
      * @return int
      */
-    public function getIdaccess()
+    public function getId()
     {
-        return $this->idaccess;
+        return $this->id;
     }
 
     /**
-     * Add idcrea.
+     * Gets the value of libelle.
      *
-     * @param \AppBundle\Entity\Crea $idcrea
-     *
-     * @return Accessoire
+     * @return string
      */
-    public function addIdcrea(\AppBundle\Entity\Crea $idcrea)
+    public function getLibelle()
     {
-        $this->idcrea[] = $idcrea;
+        return $this->libelle;
+    }
+
+    /**
+     * Sets the value of libelle.
+     *
+     * @param string $libelle the libelle
+     *
+     * @return self
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
 
         return $this;
     }
 
     /**
-     * Remove idcrea.
+     * Gets the value of photo.
      *
-     * @param \AppBundle\Entity\Crea $idcrea
+     * @return string
      */
-    public function removeIdcrea(\AppBundle\Entity\Crea $idcrea)
+    public function getPhoto()
     {
-        $this->idcrea->removeElement($idcrea);
+        return $this->photo;
     }
 
     /**
-     * Get idcrea.
+     * Sets the value of photo.
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param string $photo the photo
+     *
+     * @return self
      */
-    public function getIdcrea()
+    public function setPhoto($photo)
     {
-        return $this->idcrea;
-    }
-
-    /**
-     * Add idlgn.
-     *
-     * @param \AppBundle\Entity\ConfigComm $idlgn
-     *
-     * @return Accessoire
-     */
-    public function addIdlgn(\AppBundle\Entity\ConfigComm $idlgn)
-    {
-        $this->idlgn[] = $idlgn;
+        $this->photo = $photo;
 
         return $this;
     }
 
     /**
-     * Remove idlgn.
+     * Gets the value of prix.
      *
-     * @param \AppBundle\Entity\ConfigComm $idlgn
+     * @return int
      */
-    public function removeIdlgn(\AppBundle\Entity\ConfigComm $idlgn)
+    public function getPrix()
     {
-        $this->idlgn->removeElement($idlgn);
+        return $this->prix;
     }
 
     /**
-     * Get idlgn.
+     * Sets the value of prix.
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param int $prix the prix
+     *
+     * @return self
      */
-    public function getIdlgn()
+    public function setPrix($prix)
     {
-        return $this->idlgn;
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of configurations.
+     *
+     * @return mixed
+     */
+    public function getConfigurations()
+    {
+        return $this->configurations;
+    }
+
+    /**
+     * Sets the value of configurations.
+     *
+     * @param mixed $configurations the configurations
+     *
+     * @return self
+     */
+    public function setConfigurations($configurations)
+    {
+        $this->configurations = $configurations;
+
+        return $this;
     }
 }

@@ -7,10 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Creation.
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CreationRepository")
  */
 class Creation extends Realisation
 {
+    const PHOTO_PATH = '/public/images/';
     /**
      * @var string
      *
@@ -24,6 +25,24 @@ class Creation extends Realisation
      * @ORM\Column(name="diaporama", type="boolean", nullable=false, options={"default" : 0})
      */
     private $diaporama = false;
+
+    public function getPhotoUrl()
+    {
+        return self::PHOTO_PATH.$this->getPhoto();
+    }
+
+    public function getDescription()
+    {
+        $config = $this->getConfiguration();
+        $categorie = $this->getCategorie() ? $this->getCategorie()->getLibelle() : '';
+        $forme = $this->getForme() ? $this->getForme()->getLibelle() : '';
+        $matiere = $config->getMatiere();
+        $couleur = $config->getCouleur();
+
+        $description = [$categorie, $forme, $matiere, $couleur];
+
+        return implode(' ', array_filter($description, 'strlen'));
+    }
 
     /**
      * Gets the value of photo.

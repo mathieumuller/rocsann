@@ -34,6 +34,11 @@ class Forme
      */
     protected $realisations;
 
+    public function __toString()
+    {
+        return $this->getLibelle();
+    }
+
     /**
      * Constructor.
      */
