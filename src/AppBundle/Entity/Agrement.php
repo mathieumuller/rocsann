@@ -3,69 +3,53 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Traits\TimeAwareEntity;
 
 /**
- * Accessoire.
+ * Agrement.
  *
- * @ORM\Table(name="accessoire")
+ * @ORM\Table(name="agrement")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
-class Accessoire
+class Agrement
 {
+    use TimeAwareEntity;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string
      *
      * @ORM\Column(name="libAccess", type="string", length=30, nullable=false)
      */
-    private $libaccess;
+    private $libelle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", nullable=true)
+     */
+    private $photo;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="idAccess", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="prix", type="float", nullable=true)
      */
-    private $idaccess;
+    private $prix;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Crea", inversedBy="idaccess")
-     * @ORM\JoinTable(name="access_crea",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idAccess", referencedColumnName="idAccess")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idCrea", referencedColumnName="idCrea")
-     *   }
-     * )
+     * @ORM\ManyToMany(targetEntity="Configuration", mappedBy="agrements")
      */
-    private $idcrea;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ConfigComm", inversedBy="idaccess")
-     * @ORM\JoinTable(name="access_comm",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idAccess", referencedColumnName="idAccess")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idLgn", referencedColumnName="idLgn")
-     *   }
-     * )
-     */
-    private $idlgn;
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->idcrea = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->idlgn = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    private $configurations;
 
     /**
      * Set libaccess.
