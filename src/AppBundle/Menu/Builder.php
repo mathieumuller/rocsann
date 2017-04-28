@@ -5,6 +5,7 @@ namespace AppBundle\Menu;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use AppBundle\Entity\User;
 
 class Builder implements ContainerAwareInterface
 {
@@ -12,6 +13,8 @@ class Builder implements ContainerAwareInterface
 
     public function mainMenu(FactoryInterface $factory, array $options)
     {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
         $menu = $factory->createItem(
             'root'
         );
@@ -24,14 +27,31 @@ class Builder implements ContainerAwareInterface
         );
 
         $menu->addChild(
-            'Produits',
-            ['uri' => 'toto']
+            'Créations',
+            ['route' => 'creations_list']
         );
 
         $menu->addChild(
             'Mon compte',
             ['uri' => 'tta']
         );
+
+        $menu->addChild(
+            'Mon compte',
+            ['uri' => 'tta']
+        );
+
+        if ($user instanceof User) {
+            $menu->addChild(
+                'Logout',
+                ['uri' => 'logout']
+            );
+        } else {
+            $menu->addChild(
+                'Login',
+                ['route' => 'login']
+            );
+        }
 
         return $menu;
     }

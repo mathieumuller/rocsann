@@ -3,3 +3,8 @@ labels:
         categorie: "Catégorie"
         forme: "Forme"
         matiere: "Matière"
+
+authentication:
+    username: Identifiant
+    password: Mot de passe
+    login: S'identifier

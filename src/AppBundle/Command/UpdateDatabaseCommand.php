@@ -10,6 +10,9 @@ use AppBundle\Entity;
 
 class UpdateDatabaseCommand extends ContainerAwareCommand
 {
+    private $em;
+    private $io;
+
     protected function configure()
     {
         $this
@@ -20,12 +23,18 @@ class UpdateDatabaseCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $io = new SymfonyStyle($input, $output);
-        $em = $this->getContainer()->get('doctrine')->getManager();
+        $this->io = new SymfonyStyle($input, $output);
+        $this->em = $this->getContainer()->get('doctrine')->getManager();
 
-        $io->section('Import des créations');
-        $oldCreations = $em->getRepository('AppBundle:Crea')->findAll();
-        $io->progressStart(count($oldCreations));
+        // $this->importCreations();
+        $this->importUsers();
+    }
+
+    private function importCreations()
+    {
+        $this->io->section('Import des créations');
+        $oldCreations = $this->em->getRepository('AppBundle:Crea')->findAll();
+        $this->io->progressStart(count($oldCreations));
 
         foreach ($oldCreations as $crea) {
             $creation = new Entity\Creation();
@@ -34,19 +43,19 @@ class UpdateDatabaseCommand extends ContainerAwareCommand
             $libForme = $produit->getLibforme();
 
             // Create the categorie if not exists
-            if (!$categorie = $em->getRepository('AppBundle:Categorie')->findOneByLibelle($libType)) {
+            if (!$categorie = $this->em->getRepository('AppBundle:Categorie')->findOneByLibelle($libType)) {
                 $categorie = new Entity\Categorie();
                 $categorie->setLibelle($libType)
                     ->setCode(uniqid())
                 ;
-                $em->persist($categorie);
+                $this->em->persist($categorie);
             }
 
             // Create the forme if not exists
-            if (!$forme = $em->getRepository('AppBundle:Forme')->findOneByLibelle($libForme)) {
+            if (!$forme = $this->em->getRepository('AppBundle:Forme')->findOneByLibelle($libForme)) {
                 $forme = new Entity\Forme();
                 $forme->setLibelle($libForme);
-                $em->persist($forme);
+                $this->em->persist($forme);
             }
 
             //Create the creation configuration
@@ -61,16 +70,16 @@ class UpdateDatabaseCommand extends ContainerAwareCommand
             ;
 
             foreach ($crea->getIdaccess() as $accessoire) {
-                if (!$agrement = $em->getRepository('AppBundle:Agrement')->findOneByLibelle($accessoire->getLibaccess())) {
+                if (!$agrement = $this->em->getRepository('AppBundle:Agrement')->findOneByLibelle($accessoire->getLibaccess())) {
                     $agrement = new Entity\Agrement();
                     $agrement->setLibelle($accessoire->getLibAccess());
-                    $em->persist($agrement);
+                    $this->em->persist($agrement);
                 }
 
                 $configuration->addAgrement($agrement);
             }
 
-            $em->persist($configuration);
+            $this->em->persist($configuration);
 
             $creation->setPrix($crea->getPrix())
                 ->setCategorie($categorie)
@@ -80,14 +89,57 @@ class UpdateDatabaseCommand extends ContainerAwareCommand
                 ->setDiaporama($crea->getDiapo())
             ;
 
-            $em->persist($creation);
-            $em->flush();
+            $this->em->persist($creation);
+            $this->em->flush();
 
-            $io->progressAdvance();
+            $this->io->progressAdvance();
         }
 
-        $io->progressFinish();
+        $this->io->progressFinish();
 
-        $io->success(count($oldCreations).' créations importées');
+        $this->io->success(count($oldCreations).' créations importées');
+    }
+
+    private function importUsers()
+    {
+        $this->io->section('Import des utilisateurs');
+        $oldUsers = $this->em->getRepository('AppBundle:Utilisateur')->findAll();
+        $this->io->progressStart(count($oldUsers));
+
+        foreach ($oldUsers as $oldUser) {
+            $user = new Entity\User();
+
+            $user->setId($oldUser->getIdutil())
+                ->setLastname($oldUser->getNomutil())
+                ->setFirstname($oldUser->getPrenutil())
+                ->setPreviousPassword($oldUser->getPassutil())
+                ->setEmail($oldUser->getMailutil())
+                ->setUsername($oldUser->getPrenutil().$oldUser->getIdutil())
+                ->setAddress($oldUser->getVoieutil())
+                ->setZipCode($oldUser->getCputil())
+                ->setCity($oldUser->getCommuneutil())
+                ->setCountry($oldUser->getPaysutil())
+                ->setNewsLetter($oldUser->getNews())
+                ->setRoles(['ROLE_USER'])
+            ;
+
+            $plainPassword = 'password';
+            $encoder = $this->getContainer()->get('security.password_encoder');
+            $encoded = $encoder->encodePassword($user, $plainPassword);
+            $user->setPassword($encoded);
+
+            $this->em->persist($user);
+
+            // REMOVE LATER
+            $this->em->flush();
+            //
+            //
+            $this->io->progressAdvance();
+        }
+
+        $this->em->flush();
+        $this->io->progressFinish();
+
+        $this->io->success(count($oldUsers).' utilisateurs importées');
     }
 }
