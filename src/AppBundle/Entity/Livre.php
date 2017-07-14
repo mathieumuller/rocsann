@@ -2,58 +2,49 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
- * Livre.
- *
- * @ORM\Table(name="livre", indexes={@ORM\Index(name="FK_livre_idUtil", columns={"idUtil"})})
- * @ORM\Entity
+ * Livre
  */
 class Livre
 {
     /**
+     * @var integer
+     */
+    private $idliv;
+
+    /**
      * @var string
-     *
-     * @ORM\Column(name="msgLiv", type="text", length=65535, nullable=false)
      */
     private $msgliv;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="datLiv", type="date", nullable=false)
      */
     private $datliv;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="signLivr", type="string", length=60, nullable=false)
      */
     private $signlivr;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idLiv", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idliv;
-
-    /**
      * @var \AppBundle\Entity\Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUtil", referencedColumnName="idUtil")
-     * })
      */
-    private $user;
+    private $idutil;
+
 
     /**
-     * Set msgliv.
+     * Get idliv
+     *
+     * @return integer
+     */
+    public function getIdliv()
+    {
+        return $this->idliv;
+    }
+
+    /**
+     * Set msgliv
      *
      * @param string $msgliv
      *
@@ -67,7 +58,7 @@ class Livre
     }
 
     /**
-     * Get msgliv.
+     * Get msgliv
      *
      * @return string
      */
@@ -77,7 +68,7 @@ class Livre
     }
 
     /**
-     * Set datliv.
+     * Set datliv
      *
      * @param \DateTime $datliv
      *
@@ -91,7 +82,7 @@ class Livre
     }
 
     /**
-     * Get datliv.
+     * Get datliv
      *
      * @return \DateTime
      */
@@ -101,7 +92,7 @@ class Livre
     }
 
     /**
-     * Set signlivr.
+     * Set signlivr
      *
      * @param string $signlivr
      *
@@ -115,7 +106,7 @@ class Livre
     }
 
     /**
-     * Get signlivr.
+     * Get signlivr
      *
      * @return string
      */
@@ -125,36 +116,27 @@ class Livre
     }
 
     /**
-     * Get idliv.
+     * Set idutil
      *
-     * @return int
+     * @param \AppBundle\Entity\Utilisateur $idutil
+     *
+     * @return Livre
      */
-    public function getIdliv()
+    public function setIdutil(\AppBundle\Entity\Utilisateur $idutil = null)
     {
-        return $this->idliv;
-    }
-
-    /**
-     * Gets the }).
-     *
-     * @return \AppBundle\Entity\Utilisateur
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Sets the }).
-     *
-     * @param \AppBundle\Entity\Utilisateur $user the user
-     *
-     * @return self
-     */
-    public function setUser(\AppBundle\Entity\Utilisateur $user)
-    {
-        $this->user = $user;
+        $this->idutil = $idutil;
 
         return $this;
     }
+
+    /**
+     * Get idutil
+     *
+     * @return \AppBundle\Entity\Utilisateur
+     */
+    public function getIdutil()
+    {
+        return $this->idutil;
+    }
 }
+

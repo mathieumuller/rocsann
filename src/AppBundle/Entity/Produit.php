@@ -2,45 +2,42 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Produit
- *
- * @ORM\Table(name="produit")
- * @ORM\Entity
  */
 class Produit
 {
     /**
+     * @var integer
+     */
+    private $idproduit;
+
+    /**
      * @var string
-     *
-     * @ORM\Column(name="libType", type="string", length=50, nullable=false)
      */
     private $libtype;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="libForme", type="string", length=50, nullable=false)
      */
     private $libforme;
 
+
     /**
-     * @var integer
+     * Get idproduit
      *
-     * @ORM\Column(name="idProduit", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @return integer
      */
-    private $idproduit;
-
-
+    public function getIdproduit()
+    {
+        return $this->idproduit;
+    }
 
     /**
      * Set libtype
      *
      * @param string $libtype
+     *
      * @return Produit
      */
     public function setLibtype($libtype)
@@ -53,7 +50,7 @@ class Produit
     /**
      * Get libtype
      *
-     * @return string 
+     * @return string
      */
     public function getLibtype()
     {
@@ -64,6 +61,7 @@ class Produit
      * Set libforme
      *
      * @param string $libforme
+     *
      * @return Produit
      */
     public function setLibforme($libforme)
@@ -76,20 +74,11 @@ class Produit
     /**
      * Get libforme
      *
-     * @return string 
+     * @return string
      */
     public function getLibforme()
     {
         return $this->libforme;
     }
-
-    /**
-     * Get idproduit
-     *
-     * @return integer 
-     */
-    public function getIdproduit()
-    {
-        return $this->idproduit;
-    }
 }
+

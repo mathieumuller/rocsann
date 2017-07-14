@@ -2,133 +2,88 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * ConfigComm
- *
- * @ORM\Table(name="config_comm", indexes={@ORM\Index(name="FK_config_comm_idProduit", columns={"idProduit"}), @ORM\Index(name="FK_config_comm_idComm", columns={"idComm"})})
- * @ORM\Entity
  */
 class ConfigComm
 {
     /**
+     * @var integer
+     */
+    private $idlgn;
+
+    /**
      * @var string
-     *
-     * @ORM\Column(name="matiere", type="string", length=40, nullable=false)
      */
     private $matiere;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="couleur", type="string", length=50, nullable=false)
      */
     private $couleur;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="bordure", type="string", length=40, nullable=false)
      */
     private $bordure;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="galon", type="string", length=50, nullable=false)
      */
     private $galon;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="frange", type="string", length=40, nullable=false)
      */
     private $frange;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="broderie", type="string", length=40, nullable=false)
      */
     private $broderie;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="taille", type="string", length=30, nullable=false)
      */
     private $taille;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="logo", type="blob", length=65535, nullable=false)
      */
     private $logo;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="perso", type="text", length=65535, nullable=false)
      */
     private $perso;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="quantite", type="integer", nullable=false)
      */
     private $quantite;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="pxUnit", type="integer", nullable=false)
      */
     private $pxunit;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="idCreaBrute", type="integer", nullable=false)
      */
     private $idcreabrute;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="idLgn", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idlgn;
-
-    /**
      * @var \AppBundle\Entity\Commande
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Commande")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idComm", referencedColumnName="idComm")
-     * })
      */
     private $idcomm;
 
     /**
      * @var \AppBundle\Entity\Produit
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Produit")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idProduit", referencedColumnName="idProduit")
-     * })
      */
     private $idproduit;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Accessoire", mappedBy="idlgn")
      */
     private $idaccess;
 
@@ -140,11 +95,21 @@ class ConfigComm
         $this->idaccess = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * Get idlgn
+     *
+     * @return integer
+     */
+    public function getIdlgn()
+    {
+        return $this->idlgn;
+    }
 
     /**
      * Set matiere
      *
      * @param string $matiere
+     *
      * @return ConfigComm
      */
     public function setMatiere($matiere)
@@ -157,7 +122,7 @@ class ConfigComm
     /**
      * Get matiere
      *
-     * @return string 
+     * @return string
      */
     public function getMatiere()
     {
@@ -168,6 +133,7 @@ class ConfigComm
      * Set couleur
      *
      * @param string $couleur
+     *
      * @return ConfigComm
      */
     public function setCouleur($couleur)
@@ -180,7 +146,7 @@ class ConfigComm
     /**
      * Get couleur
      *
-     * @return string 
+     * @return string
      */
     public function getCouleur()
     {
@@ -191,6 +157,7 @@ class ConfigComm
      * Set bordure
      *
      * @param string $bordure
+     *
      * @return ConfigComm
      */
     public function setBordure($bordure)
@@ -203,7 +170,7 @@ class ConfigComm
     /**
      * Get bordure
      *
-     * @return string 
+     * @return string
      */
     public function getBordure()
     {
@@ -214,6 +181,7 @@ class ConfigComm
      * Set galon
      *
      * @param string $galon
+     *
      * @return ConfigComm
      */
     public function setGalon($galon)
@@ -226,7 +194,7 @@ class ConfigComm
     /**
      * Get galon
      *
-     * @return string 
+     * @return string
      */
     public function getGalon()
     {
@@ -237,6 +205,7 @@ class ConfigComm
      * Set frange
      *
      * @param string $frange
+     *
      * @return ConfigComm
      */
     public function setFrange($frange)
@@ -249,7 +218,7 @@ class ConfigComm
     /**
      * Get frange
      *
-     * @return string 
+     * @return string
      */
     public function getFrange()
     {
@@ -260,6 +229,7 @@ class ConfigComm
      * Set broderie
      *
      * @param string $broderie
+     *
      * @return ConfigComm
      */
     public function setBroderie($broderie)
@@ -272,7 +242,7 @@ class ConfigComm
     /**
      * Get broderie
      *
-     * @return string 
+     * @return string
      */
     public function getBroderie()
     {
@@ -283,6 +253,7 @@ class ConfigComm
      * Set taille
      *
      * @param string $taille
+     *
      * @return ConfigComm
      */
     public function setTaille($taille)
@@ -295,7 +266,7 @@ class ConfigComm
     /**
      * Get taille
      *
-     * @return string 
+     * @return string
      */
     public function getTaille()
     {
@@ -306,6 +277,7 @@ class ConfigComm
      * Set logo
      *
      * @param string $logo
+     *
      * @return ConfigComm
      */
     public function setLogo($logo)
@@ -318,7 +290,7 @@ class ConfigComm
     /**
      * Get logo
      *
-     * @return string 
+     * @return string
      */
     public function getLogo()
     {
@@ -329,6 +301,7 @@ class ConfigComm
      * Set perso
      *
      * @param string $perso
+     *
      * @return ConfigComm
      */
     public function setPerso($perso)
@@ -341,7 +314,7 @@ class ConfigComm
     /**
      * Get perso
      *
-     * @return string 
+     * @return string
      */
     public function getPerso()
     {
@@ -352,6 +325,7 @@ class ConfigComm
      * Set quantite
      *
      * @param integer $quantite
+     *
      * @return ConfigComm
      */
     public function setQuantite($quantite)
@@ -364,7 +338,7 @@ class ConfigComm
     /**
      * Get quantite
      *
-     * @return integer 
+     * @return integer
      */
     public function getQuantite()
     {
@@ -375,6 +349,7 @@ class ConfigComm
      * Set pxunit
      *
      * @param integer $pxunit
+     *
      * @return ConfigComm
      */
     public function setPxunit($pxunit)
@@ -387,7 +362,7 @@ class ConfigComm
     /**
      * Get pxunit
      *
-     * @return integer 
+     * @return integer
      */
     public function getPxunit()
     {
@@ -398,6 +373,7 @@ class ConfigComm
      * Set idcreabrute
      *
      * @param integer $idcreabrute
+     *
      * @return ConfigComm
      */
     public function setIdcreabrute($idcreabrute)
@@ -410,7 +386,7 @@ class ConfigComm
     /**
      * Get idcreabrute
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdcreabrute()
     {
@@ -418,19 +394,10 @@ class ConfigComm
     }
 
     /**
-     * Get idlgn
-     *
-     * @return integer 
-     */
-    public function getIdlgn()
-    {
-        return $this->idlgn;
-    }
-
-    /**
      * Set idcomm
      *
      * @param \AppBundle\Entity\Commande $idcomm
+     *
      * @return ConfigComm
      */
     public function setIdcomm(\AppBundle\Entity\Commande $idcomm = null)
@@ -443,7 +410,7 @@ class ConfigComm
     /**
      * Get idcomm
      *
-     * @return \AppBundle\Entity\Commande 
+     * @return \AppBundle\Entity\Commande
      */
     public function getIdcomm()
     {
@@ -454,6 +421,7 @@ class ConfigComm
      * Set idproduit
      *
      * @param \AppBundle\Entity\Produit $idproduit
+     *
      * @return ConfigComm
      */
     public function setIdproduit(\AppBundle\Entity\Produit $idproduit = null)
@@ -466,7 +434,7 @@ class ConfigComm
     /**
      * Get idproduit
      *
-     * @return \AppBundle\Entity\Produit 
+     * @return \AppBundle\Entity\Produit
      */
     public function getIdproduit()
     {
@@ -477,6 +445,7 @@ class ConfigComm
      * Add idaccess
      *
      * @param \AppBundle\Entity\Accessoire $idaccess
+     *
      * @return ConfigComm
      */
     public function addIdaccess(\AppBundle\Entity\Accessoire $idaccess)
@@ -499,10 +468,11 @@ class ConfigComm
     /**
      * Get idaccess
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdaccess()
     {
         return $this->idaccess;
     }
 }
+

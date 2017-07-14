@@ -1,0 +1,3 @@
+AppBundle\Entity\Discount:
+    type: entity
+    table: discount

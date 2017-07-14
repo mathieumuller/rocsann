@@ -1,0 +1,181 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{%- block button_widget -%}
+    {%- if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
+        {% if attr.icon|default %}
+            <i class="material-icons">{{ attr.icon }}</i>
+        {% endif %}
+        {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}
+    </button>
+{%- endblock button_widget -%}
+
+{%- block form_row -%}
+    {% if "checkbox" in block_prefixes %}
+        <div>
+            {{- form_widget(form) -}}
+            {{- form_label(form) -}}
+            {{- form_errors(form) -}}
+        </div>
+    {% elseif "accessories" in block_prefixes %}
+        <div class="input-field">
+            {{- form_errors(form) -}}
+            {{- form_widget(form) -}}
+        </div>
+    {% else %}
+        <div class="input-field{% if type|default == "file" %} file-field{% endif %}">
+            {{- form_label(form) -}}
+            {{- form_errors(form) -}}
+            {{- form_widget(form) -}}
+        </div>
+    {% endif %}
+{%- endblock form_row -%}
+
+{%- block form_label -%}
+    {% if label is not same as(false) and type|default != 'file' -%}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' active')|trim}) %}
+        {%- if label_attr['data-icon'] |default() %}
+            <i class="material-icons prefix">{{ label_attr['data-icon'] }}</i>
+        {% endif -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif -%}
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+        <label{% if label_attr %} {% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
+            {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}
+            {% if required %} <span class="red-text">*</span> {% endif %}
+        </label>
+    {%- endif -%}
+{%- endblock form_label -%}
+
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' validate')|trim}) %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{%- endblock form_widget_simple -%}
+
+{%- block file_widget -%}
+    <div>
+        {% set file = form.vars.data %}
+        {% set src = null %}
+        {% if file is not empty %}
+            {% set path = (file.realPath|split('/web/'))[1] %}
+            {% set src = "src='/" ~ path ~ "'" %}
+        {% endif %}
+        <img id="image_{{ id }}" style="max-width: 100%" {{ src|raw }} />
+    </div>
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>{{ (label|default("labels.form.file_type"))|trans }}</span>
+            {{- block('form_widget_simple') -}}
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+    </div>
+    <script>
+        document.getElementById("{{ id }}").onchange = function () {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                // get loaded data and render thumbnail.
+                document.getElementById("image_{{ id }}").src = e.target.result;
+            };
+
+            // read the image file as a data URL.
+            reader.readAsDataURL(this.files[0]);
+        };
+    </script>
+{%- endblock file_widget -%}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+    <ul>
+        {%- for error in errors -%}
+            <li>{{ error.message }}</li>
+        {%- endfor -%}
+    </ul>
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{%- block date_widget -%}
+    {%- if widget == 'single_text' -%}
+        {% set type = 'date' %}
+
+        {{ block('form_widget_simple') }}
+    {%- else -%}
+        <div {{ block('widget_container_attributes') }}>
+            {{- date_pattern|replace({
+                '{{ year }}':  form_widget(form.year),
+                '{{ month }}': form_widget(form.month),
+                '{{ day }}':   form_widget(form.day),
+            })|raw -}}
+        </div>
+    {%- endif -%}
+{%- endblock date_widget -%}
+
+{%- block textarea_widget -%}
+	{% set attr = attr|merge({'class': (attr.class|default('') ~ ' materialize-textarea')|trim}) %}
+    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+{%- endblock textarea_widget -%}
+
+{%- block money_widget -%}
+    {% set type = 'text' %}
+    {{ block('form_widget_simple') }}
+{%- endblock money_widget -%}
+
+{% block accessories_widget %}
+    <table
+        class="form-collection accessories-type"
+        data-prototype="
+            {% filter escape %}
+                {% include 'form/collection_table.prototype.html.twig' with {'form': form.vars.prototype} only %}
+            {% endfilter %}
+        "
+        data-index={{ form.children|length }}
+    >
+        {% if form.vars.label is not empty %}
+            <thead>
+                <tr>
+                    <th colspan="2">{{ form.vars.label|trans }}</th>
+                </tr>
+            </thead>
+        {% endif %}
+        <tbody class="prototypes-container">
+            {% for child in form %}
+                {% include 'form/collection_table.prototype.html.twig' with {"form": child} only %}
+            {% endfor %}
+        </tbody>
+        <tfooter>
+            <tr>
+                <th class="add-item" colspan="2">
+                    <button type="button" class="btn-floating btn-small waves-effect waves-light blue right">
+                        <i class="material-icons">add</i>
+                    </button>
+                </th>
+            </tr>
+        </tfooter>
+    </table>
+{% endblock accessories_widget %}

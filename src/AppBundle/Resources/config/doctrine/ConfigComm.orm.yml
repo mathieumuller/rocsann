@@ -1,0 +1,123 @@
+AppBundle\Entity\ConfigComm:
+    type: entity
+    table: config_comm
+    indexes:
+        FK_config_comm_idProduit:
+            columns:
+                - idProduit
+        FK_config_comm_idComm:
+            columns:
+                - idComm
+    id:
+        idlgn:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idLgn
+            generator:
+                strategy: IDENTITY
+    fields:
+        matiere:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+        couleur:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        bordure:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+        galon:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        frange:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+        broderie:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+        taille:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+        logo:
+            type: blob
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        perso:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        quantite:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        pxunit:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: pxUnit
+        idcreabrute:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: idCreaBrute
+    manyToOne:
+        idcomm:
+            targetEntity: Commande
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idComm:
+                    referencedColumnName: idComm
+            orphanRemoval: false
+        idproduit:
+            targetEntity: Produit
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idProduit:
+                    referencedColumnName: idProduit
+            orphanRemoval: false
+    manyToMany:
+        idaccess:
+            targetEntity: Accessoire
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: idlgn
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

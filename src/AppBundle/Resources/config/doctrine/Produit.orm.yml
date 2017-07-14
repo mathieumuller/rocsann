@@ -1,0 +1,29 @@
+AppBundle\Entity\Produit:
+    type: entity
+    table: produit
+    id:
+        idproduit:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idProduit
+            generator:
+                strategy: IDENTITY
+    fields:
+        libtype:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: libType
+        libforme:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: libForme
+    lifecycleCallbacks: {  }

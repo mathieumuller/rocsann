@@ -2,73 +2,52 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
- * Accessoire.
- *
- * @ORM\Table(name="accessoire")
- * @ORM\Entity
+ * Accessoire
  */
 class Accessoire
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="libAccess", type="string", length=30, nullable=false)
-     */
-    private $libaccess;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="idAccess", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @var integer
      */
     private $idaccess;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Crea", inversedBy="idaccess")
-     * @ORM\JoinTable(name="access_crea",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idAccess", referencedColumnName="idAccess")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idCrea", referencedColumnName="idCrea")
-     *   }
-     * )
+     * @var string
      */
-    private $idcrea;
+    private $libaccess;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ConfigComm", inversedBy="idaccess")
-     * @ORM\JoinTable(name="access_comm",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idAccess", referencedColumnName="idAccess")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idLgn", referencedColumnName="idLgn")
-     *   }
-     * )
      */
     private $idlgn;
 
     /**
-     * Constructor.
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $idcrea;
+
+    /**
+     * Constructor
      */
     public function __construct()
     {
-        $this->idcrea = new \Doctrine\Common\Collections\ArrayCollection();
         $this->idlgn = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idcrea = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Set libaccess.
+     * Get idaccess
+     *
+     * @return integer
+     */
+    public function getIdaccess()
+    {
+        return $this->idaccess;
+    }
+
+    /**
+     * Set libaccess
      *
      * @param string $libaccess
      *
@@ -82,7 +61,7 @@ class Accessoire
     }
 
     /**
-     * Get libaccess.
+     * Get libaccess
      *
      * @return string
      */
@@ -92,51 +71,7 @@ class Accessoire
     }
 
     /**
-     * Get idaccess.
-     *
-     * @return int
-     */
-    public function getIdaccess()
-    {
-        return $this->idaccess;
-    }
-
-    /**
-     * Add idcrea.
-     *
-     * @param \AppBundle\Entity\Crea $idcrea
-     *
-     * @return Accessoire
-     */
-    public function addIdcrea(\AppBundle\Entity\Crea $idcrea)
-    {
-        $this->idcrea[] = $idcrea;
-
-        return $this;
-    }
-
-    /**
-     * Remove idcrea.
-     *
-     * @param \AppBundle\Entity\Crea $idcrea
-     */
-    public function removeIdcrea(\AppBundle\Entity\Crea $idcrea)
-    {
-        $this->idcrea->removeElement($idcrea);
-    }
-
-    /**
-     * Get idcrea.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdcrea()
-    {
-        return $this->idcrea;
-    }
-
-    /**
-     * Add idlgn.
+     * Add idlgn
      *
      * @param \AppBundle\Entity\ConfigComm $idlgn
      *
@@ -150,7 +85,7 @@ class Accessoire
     }
 
     /**
-     * Remove idlgn.
+     * Remove idlgn
      *
      * @param \AppBundle\Entity\ConfigComm $idlgn
      */
@@ -160,7 +95,7 @@ class Accessoire
     }
 
     /**
-     * Get idlgn.
+     * Get idlgn
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -168,4 +103,39 @@ class Accessoire
     {
         return $this->idlgn;
     }
+
+    /**
+     * Add idcrea
+     *
+     * @param \AppBundle\Entity\Crea $idcrea
+     *
+     * @return Accessoire
+     */
+    public function addIdcrea(\AppBundle\Entity\Crea $idcrea)
+    {
+        $this->idcrea[] = $idcrea;
+
+        return $this;
+    }
+
+    /**
+     * Remove idcrea
+     *
+     * @param \AppBundle\Entity\Crea $idcrea
+     */
+    public function removeIdcrea(\AppBundle\Entity\Crea $idcrea)
+    {
+        $this->idcrea->removeElement($idcrea);
+    }
+
+    /**
+     * Get idcrea
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdcrea()
+    {
+        return $this->idcrea;
+    }
 }
+

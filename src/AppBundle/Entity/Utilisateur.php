@@ -2,135 +2,102 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Utilisateur
- *
- * @ORM\Table(name="utilisateur", indexes={@ORM\Index(name="FK_utilisateur_libTyp", columns={"libTyp"}), @ORM\Index(name="FK_utilisateur_idQuestion", columns={"idQuestion"}), @ORM\Index(name="idQuestion", columns={"idQuestion"}), @ORM\Index(name="idQuestion_2", columns={"idQuestion"})})
- * @ORM\Entity
  */
 class Utilisateur
 {
     /**
+     * @var integer
+     */
+    private $idutil;
+
+    /**
      * @var string
-     *
-     * @ORM\Column(name="nomUtil", type="string", length=40, nullable=true)
      */
     private $nomutil;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="prenUtil", type="string", length=40, nullable=true)
      */
     private $prenutil;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="passUtil", type="string", length=32, nullable=true)
      */
     private $passutil;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="mailUtil", type="string", length=100, nullable=true)
      */
     private $mailutil;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="voieUtil", type="string", length=100, nullable=true)
      */
     private $voieutil;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="CPUtil", type="string", length=10, nullable=true)
      */
     private $cputil;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="communeUtil", type="string", length=50, nullable=true)
      */
     private $communeutil;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="paysUtil", type="string", length=50, nullable=true)
      */
     private $paysutil;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="nbConnect", type="integer", nullable=true)
      */
     private $nbconnect;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="lastConnect", type="date", nullable=true)
      */
     private $lastconnect;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="dossUtil", type="string", length=75, nullable=true)
      */
     private $dossutil;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="news", type="integer", nullable=false)
      */
-    private $news;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="idUtil", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idutil;
-
-    /**
-     * @var \AppBundle\Entity\Typutil
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Typutil")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="libTyp", referencedColumnName="libTyp")
-     * })
-     */
-    private $libtyp;
+    private $news = '0';
 
     /**
      * @var \AppBundle\Entity\Question
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idQuestion", referencedColumnName="idQuestion")
-     * })
      */
     private $idquestion;
 
+    /**
+     * @var \AppBundle\Entity\Typutil
+     */
+    private $libtyp;
 
+
+    /**
+     * Get idutil
+     *
+     * @return integer
+     */
+    public function getIdutil()
+    {
+        return $this->idutil;
+    }
 
     /**
      * Set nomutil
      *
      * @param string $nomutil
+     *
      * @return Utilisateur
      */
     public function setNomutil($nomutil)
@@ -143,7 +110,7 @@ class Utilisateur
     /**
      * Get nomutil
      *
-     * @return string 
+     * @return string
      */
     public function getNomutil()
     {
@@ -154,6 +121,7 @@ class Utilisateur
      * Set prenutil
      *
      * @param string $prenutil
+     *
      * @return Utilisateur
      */
     public function setPrenutil($prenutil)
@@ -166,7 +134,7 @@ class Utilisateur
     /**
      * Get prenutil
      *
-     * @return string 
+     * @return string
      */
     public function getPrenutil()
     {
@@ -177,6 +145,7 @@ class Utilisateur
      * Set passutil
      *
      * @param string $passutil
+     *
      * @return Utilisateur
      */
     public function setPassutil($passutil)
@@ -189,7 +158,7 @@ class Utilisateur
     /**
      * Get passutil
      *
-     * @return string 
+     * @return string
      */
     public function getPassutil()
     {
@@ -200,6 +169,7 @@ class Utilisateur
      * Set mailutil
      *
      * @param string $mailutil
+     *
      * @return Utilisateur
      */
     public function setMailutil($mailutil)
@@ -212,7 +182,7 @@ class Utilisateur
     /**
      * Get mailutil
      *
-     * @return string 
+     * @return string
      */
     public function getMailutil()
     {
@@ -223,6 +193,7 @@ class Utilisateur
      * Set voieutil
      *
      * @param string $voieutil
+     *
      * @return Utilisateur
      */
     public function setVoieutil($voieutil)
@@ -235,7 +206,7 @@ class Utilisateur
     /**
      * Get voieutil
      *
-     * @return string 
+     * @return string
      */
     public function getVoieutil()
     {
@@ -246,6 +217,7 @@ class Utilisateur
      * Set cputil
      *
      * @param string $cputil
+     *
      * @return Utilisateur
      */
     public function setCputil($cputil)
@@ -258,7 +230,7 @@ class Utilisateur
     /**
      * Get cputil
      *
-     * @return string 
+     * @return string
      */
     public function getCputil()
     {
@@ -269,6 +241,7 @@ class Utilisateur
      * Set communeutil
      *
      * @param string $communeutil
+     *
      * @return Utilisateur
      */
     public function setCommuneutil($communeutil)
@@ -281,7 +254,7 @@ class Utilisateur
     /**
      * Get communeutil
      *
-     * @return string 
+     * @return string
      */
     public function getCommuneutil()
     {
@@ -292,6 +265,7 @@ class Utilisateur
      * Set paysutil
      *
      * @param string $paysutil
+     *
      * @return Utilisateur
      */
     public function setPaysutil($paysutil)
@@ -304,7 +278,7 @@ class Utilisateur
     /**
      * Get paysutil
      *
-     * @return string 
+     * @return string
      */
     public function getPaysutil()
     {
@@ -315,6 +289,7 @@ class Utilisateur
      * Set nbconnect
      *
      * @param integer $nbconnect
+     *
      * @return Utilisateur
      */
     public function setNbconnect($nbconnect)
@@ -327,7 +302,7 @@ class Utilisateur
     /**
      * Get nbconnect
      *
-     * @return integer 
+     * @return integer
      */
     public function getNbconnect()
     {
@@ -338,6 +313,7 @@ class Utilisateur
      * Set lastconnect
      *
      * @param \DateTime $lastconnect
+     *
      * @return Utilisateur
      */
     public function setLastconnect($lastconnect)
@@ -350,7 +326,7 @@ class Utilisateur
     /**
      * Get lastconnect
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastconnect()
     {
@@ -361,6 +337,7 @@ class Utilisateur
      * Set dossutil
      *
      * @param string $dossutil
+     *
      * @return Utilisateur
      */
     public function setDossutil($dossutil)
@@ -373,7 +350,7 @@ class Utilisateur
     /**
      * Get dossutil
      *
-     * @return string 
+     * @return string
      */
     public function getDossutil()
     {
@@ -384,6 +361,7 @@ class Utilisateur
      * Set news
      *
      * @param integer $news
+     *
      * @return Utilisateur
      */
     public function setNews($news)
@@ -396,7 +374,7 @@ class Utilisateur
     /**
      * Get news
      *
-     * @return integer 
+     * @return integer
      */
     public function getNews()
     {
@@ -404,42 +382,10 @@ class Utilisateur
     }
 
     /**
-     * Get idutil
-     *
-     * @return integer 
-     */
-    public function getIdutil()
-    {
-        return $this->idutil;
-    }
-
-    /**
-     * Set libtyp
-     *
-     * @param \AppBundle\Entity\Typutil $libtyp
-     * @return Utilisateur
-     */
-    public function setLibtyp(\AppBundle\Entity\Typutil $libtyp = null)
-    {
-        $this->libtyp = $libtyp;
-
-        return $this;
-    }
-
-    /**
-     * Get libtyp
-     *
-     * @return \AppBundle\Entity\Typutil 
-     */
-    public function getLibtyp()
-    {
-        return $this->libtyp;
-    }
-
-    /**
      * Set idquestion
      *
      * @param \AppBundle\Entity\Question $idquestion
+     *
      * @return Utilisateur
      */
     public function setIdquestion(\AppBundle\Entity\Question $idquestion = null)
@@ -452,10 +398,35 @@ class Utilisateur
     /**
      * Get idquestion
      *
-     * @return \AppBundle\Entity\Question 
+     * @return \AppBundle\Entity\Question
      */
     public function getIdquestion()
     {
         return $this->idquestion;
     }
+
+    /**
+     * Set libtyp
+     *
+     * @param \AppBundle\Entity\Typutil $libtyp
+     *
+     * @return Utilisateur
+     */
+    public function setLibtyp(\AppBundle\Entity\Typutil $libtyp = null)
+    {
+        $this->libtyp = $libtyp;
+
+        return $this;
+    }
+
+    /**
+     * Get libtyp
+     *
+     * @return \AppBundle\Entity\Typutil
+     */
+    public function getLibtyp()
+    {
+        return $this->libtyp;
+    }
 }
+

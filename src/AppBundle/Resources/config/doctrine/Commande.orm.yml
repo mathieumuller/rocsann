@@ -1,0 +1,155 @@
+AppBundle\Entity\Commande:
+    type: entity
+    table: commande
+    indexes:
+        FK_commande_idUtil:
+            columns:
+                - idUtil
+    id:
+        idcomm:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idComm
+            generator:
+                strategy: IDENTITY
+    fields:
+        valid:
+            type: string
+            nullable: true
+            length: 1
+            options:
+                fixed: false
+                comment: 'Passe de 0 à 1 lorsque le client valide son panier'
+                default: '0'
+        datcomm:
+            type: date
+            nullable: false
+            options:
+                comment: 'date de la validation de la commande'
+            column: datComm
+        delai:
+            type: date
+            nullable: false
+            options:
+                comment: 'délai annoncé lors de la proposition de devis'
+        repondu:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+                comment: 'réponse de Roc''s Ann à la demande de devis'
+        idflash:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'si c''est une vente flash'
+                default: '0'
+            column: idFlash
+        idcadeau:
+            type: string
+            nullable: false
+            length: 13
+            options:
+                fixed: false
+                comment: 'si c''est une carte cadeau'
+                default: '0'
+            column: idCadeau
+        refus:
+            type: string
+            nullable: false
+            length: 1
+            options:
+                fixed: false
+                comment: 'réponse du client à la proposition de devis : 0=pas de réponse, 1=accepté, 2=refusé'
+                default: '0'
+        accompte:
+            type: string
+            nullable: false
+            length: 1
+            options:
+                fixed: false
+                comment: 'réception de l''accompte'
+                default: '0'
+        paye:
+            type: string
+            nullable: false
+            length: 1
+            options:
+                fixed: false
+                comment: 'réception du paiement'
+                default: '0'
+        envoi:
+            type: string
+            nullable: false
+            length: 1
+            options:
+                fixed: false
+                comment: 'envoi du colis 1=ok, 0=non'
+                default: '0'
+        datenvoi:
+            type: date
+            nullable: false
+            options:
+                comment: 'date d''envoi du colis'
+            column: datEnvoi
+        fini:
+            type: string
+            nullable: false
+            length: 1
+            options:
+                fixed: false
+                comment: 'cloturation de la commande'
+                default: '0'
+        adrlivr:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+                comment: 'adresse de livraison'
+            column: adrLivr
+        modpaye:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+                comment: 'mode de paiement choisi'
+            column: modPaye
+        fraisport:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'total des frais de port de la commande'
+            column: fraisPort
+        suivi:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+                comment: 'n° de suivi postal'
+        relance:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+    manyToOne:
+        idutil:
+            targetEntity: Utilisateur
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUtil:
+                    referencedColumnName: idUtil
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

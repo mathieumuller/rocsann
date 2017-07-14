@@ -1,7 +1,0 @@
-services:
-    rocsann.authentication_listener:
-        class: AppBundle\Listener\ActiveAuthenticationListener
-        tags:
-            - { name: kernel.event_listener, event: security.interactive_login }
-        arguments:
-            - '@doctrine.orm.entity_manager'

@@ -1,0 +1,46 @@
+SaleBundle\Model\Discount:
+    type: mappedSuperclass
+    uniqueConstraints:
+        UNIQ_DISCOUNT_CODE:
+            columns:
+                - code
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        startDate:
+            type: datetime
+            nullable: false
+        endDate:
+            type: datetime
+            nullable: true
+        amount:
+            type: decimal
+            nullable: true
+            precision: 8
+            scale: 2
+        percentile:
+            type: decimal
+            nullable: true
+            precision: 3
+            scale: 2
+        code:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+
+    manyToMany:
+        products:
+            targetEntity: SaleBundle\Model\ProductInterface
+            joinTable:
+                name: discounts_products
+                joinColumns:
+                  discount_id:
+                    referencedColumnName: id
+                inverseJoinColumns:
+                  product_id:
+                    referencedColumnName: id

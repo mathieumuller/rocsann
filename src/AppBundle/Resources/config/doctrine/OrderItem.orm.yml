@@ -1,0 +1,3 @@
+AppBundle\Entity\OrderItem:
+    type: entity
+    table: order_item

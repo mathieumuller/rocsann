@@ -2,74 +2,46 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Bienvenue{% endblock %}</title>
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
-<!-- Add the slick-theme.css if you want default styling -->
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
         {% stylesheets
-            'assets/vendor/bootstrap/dist/css/bootstrap.min.css'
             'assets/vendor/materialize/dist/css/materialize.min.css'
-            'assets/vendor/slick-carousel/slick/slick.css'
-            'assets/vendor/slick-carousel/slick/slick-theme.css'
-         %}
-            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-        {% endstylesheets %}
-        {% stylesheets
             'assets/app/css/main.less'
-            'assets/app/css/typeahead.css'
          %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
         {% endstylesheets %}
-
-        {% block stylesheets %}
-        {% endblock %}
     </head>
     <body>
-        <header class="row">
+        <header class="row light-blue lighten-5">
             {% block menu %}
-                <nav class="nav-extended">
+                <nav class="nav-extended light-blue lighten-4">
                     <div class="nav-wrapper">
-                        <a href="#" class="brand-logo right">Rocs'Ann</a>
-                        {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+                        {#% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <span class='right'>{{ app.user.username }}</span>
+                            <a class='left' href="{{ path('logout') }}">Logout</a>
+                        {% else %}
+                            <a class='left' href="{{ path('login') }}">Login</a>
+                        {% endif %#}
                     </div>
                 </nav>
             {% endblock %}
-            {% block page_title %}<h2>Page d'accueil</h2>{% endblock %}
+            <h4 class="left">{% block page_title %}{{ 'rocsann.welcome'|trans }}{% endblock %}</h4>
         </header>
-
-        <section class="">
+        <section class="padding-20 brown lighten-5">
             {% block body %}
 
             {% endblock %}
         </section>
 
-        <footer class="page-footer">
-            <div class="container">
-                <div class="row">
-                    <span>SIRET n°517 981 155 000 16 - </span>
-                    <a href="/conditions.php">Conditions générales de vente</a> -
-                    <a href="https://www.facebook.com/rocs.ann" target="_blank">Retrouvez-nous sur Facebook</a> -
-                    <a href="/contactRA.php">Contacter Roc's Ann</a> -
-                    <a href="/contactWM.php">Contacter le WebMaster</a>
-                </div>
-            </div>
-        </footer>
-
         {% javascripts
             'assets/vendor/jquery/dist/jquery.min.js'
-            'assets/vendor/bootstrap/dist/js/bootstrap.min.js'
             'assets/vendor/materialize/dist/js/materialize.min.js'
-            'assets/vendor/slick-carousel/slick/slick.min.js'
-            'assets/vendor/typeahead.js/dist/bloodhound.min.js'
-            'assets/vendor/typeahead.js/dist/typeahead.bundle.min.js'
             'assets/app/js/main.js'
          %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-
-        {% block javascripts %}
-        {% endblock %}
+        {% block javascripts %}{% endblock %}
     </body>
 </html>

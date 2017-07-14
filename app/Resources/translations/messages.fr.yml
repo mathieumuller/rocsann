@@ -1,10 +1,31 @@
-labels:
-    form:
-        categorie: "Catégorie"
-        forme: "Forme"
-        matiere: "Matière"
+rocsann:
+    configuration:
+        accessories: "Accessoires assortis"
+        border: "Bordure"
+        braid: "Galon"
+        colour: "Couleur"
+        embroidery: "Broderie"
+        fringe: "Frange"
+        logo: "Logo à broder"
+        matter: "Matière"
+        size: "Taille"
+    creation:
+        accessories: "Accessoires"
+        materials: "Matériaux"
+        category: "Catégorie"
+        configuration: "Configuration"
+        description: "Description"
+        diaporama: "Ajouter au diaporama?"
+        edit: "Modifier %creation%"
+        form: "Forme"
+        new: "Nouvelle création"
+        placeholder:
+            category: "Choisissez une catégorie"
+            form: "Choisissez une forme"
+        photo: "Photo"
+        title: "Gestion des créations"
+    welcome: "Bienvenue"
 
-authentication:
-    username: Identifiant
-    password: Mot de passe
-    login: S'identifier
+sale:
+    product:
+        price: "Prix (TTC)"

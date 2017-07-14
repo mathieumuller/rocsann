@@ -2,105 +2,72 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Configuration.
- *
- * @ORM\Table(name="configuration")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ConfigurationRepository")
  */
 class Configuration
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="matiere", type="string", length=150, nullable=false)
      */
-    private $matiere;
+    protected $matter;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="couleur", type="string", length=150, nullable=false)
      */
-    private $couleur;
+    protected $colour;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="bordure", type="string", length=150, nullable=true)
      */
-    private $bordure;
+    protected $border;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="galon", type="string", length=150, nullable=true)
      */
-    private $galon;
+    protected $braid;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="frange", type="string", length=150, nullable=true)
      */
-    private $frange;
+    protected $fringe;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="broderie", type="string", length=150, nullable=true)
      */
-    private $broderie;
+    protected $embroidery;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="taille", type="string", columnDefinition="ENUM('Cheval', 'Poney', 'Mini', 'Grand cheval')", nullable=false)
      */
-    private $taille;
+    protected $size;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="logo", type="string", length=255, nullable=true)
      */
-    private $logo;
+    protected $logo;
 
     /**
-     * @ORM\ManyToMany(
-     *     targetEntity="Agrement",
-     *     inversedBy="configurations"
-     * )
-     * @ORM\JoinTable(
-     *     name="configuration_agrement",
-     *     joinColumns={@ORM\JoinColumn(name="configuration_id", referencedColumnName="id", nullable=false)},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="agrement_id", referencedColumnName="id", nullable=false)}
-     * )
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $agrements;
+    protected $accessories;
 
     /**
-     * @ORM\OneToOne(targetEntity="Realisation", mappedBy="configuration")
+     * @var Creation
      */
-    private $realisation;
+    protected $creation;
 
     /**
      * Constructor.
      */
     public function __construct()
     {
-        $this->agrements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->accessories = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -114,169 +81,169 @@ class Configuration
     }
 
     /**
-     * Gets the value of matiere.
+     * Gets the value of matter.
      *
      * @return string
      */
-    public function getMatiere()
+    public function getMatter()
     {
-        return $this->matiere;
+        return $this->matter;
     }
 
     /**
-     * Sets the value of matiere.
+     * Sets the value of matter.
      *
-     * @param string $matiere the matiere
+     * @param string $matter the matter
      *
      * @return self
      */
-    public function setMatiere($matiere)
+    public function setMatter($matter)
     {
-        $this->matiere = $matiere;
+        $this->matter = $matter;
 
         return $this;
     }
 
     /**
-     * Gets the value of couleur.
+     * Gets the value of colour.
      *
      * @return string
      */
-    public function getCouleur()
+    public function getColour()
     {
-        return $this->couleur;
+        return $this->colour;
     }
 
     /**
-     * Sets the value of couleur.
+     * Sets the value of colour.
      *
-     * @param string $couleur the couleur
+     * @param string $colour the colour
      *
      * @return self
      */
-    public function setCouleur($couleur)
+    public function setColour($colour)
     {
-        $this->couleur = $couleur;
+        $this->colour = $colour;
 
         return $this;
     }
 
     /**
-     * Gets the value of bordure.
+     * Gets the value of border.
      *
      * @return string
      */
-    public function getBordure()
+    public function getBorder()
     {
-        return $this->bordure;
+        return $this->border;
     }
 
     /**
-     * Sets the value of bordure.
+     * Sets the value of border.
      *
-     * @param string $bordure the bordure
+     * @param string $border the border
      *
      * @return self
      */
-    public function setBordure($bordure)
+    public function setBorder($border)
     {
-        $this->bordure = $bordure;
+        $this->border = $border;
 
         return $this;
     }
 
     /**
-     * Gets the value of galon.
+     * Gets the value of braid.
      *
      * @return string
      */
-    public function getGalon()
+    public function getBraid()
     {
-        return $this->galon;
+        return $this->braid;
     }
 
     /**
-     * Sets the value of galon.
+     * Sets the value of braid.
      *
-     * @param string $galon the galon
+     * @param string $braid the braid
      *
      * @return self
      */
-    public function setGalon($galon)
+    public function setBraid($braid)
     {
-        $this->galon = $galon;
+        $this->braid = $braid;
 
         return $this;
     }
 
     /**
-     * Gets the value of frange.
+     * Gets the value of fringe.
      *
      * @return string
      */
-    public function getFrange()
+    public function getFringe()
     {
-        return $this->frange;
+        return $this->fringe;
     }
 
     /**
-     * Sets the value of frange.
+     * Sets the value of fringe.
      *
-     * @param string $frange the frange
+     * @param string $fringe the fringe
      *
      * @return self
      */
-    public function setFrange($frange)
+    public function setFringe($fringe)
     {
-        $this->frange = $frange;
+        $this->fringe = $fringe;
 
         return $this;
     }
 
     /**
-     * Gets the value of broderie.
+     * Gets the value of embroidery.
      *
      * @return string
      */
-    public function getBroderie()
+    public function getEmbroidery()
     {
-        return $this->broderie;
+        return $this->embroidery;
     }
 
     /**
-     * Sets the value of broderie.
+     * Sets the value of embroidery.
      *
-     * @param string $broderie the broderie
+     * @param string $embroidery the embroidery
      *
      * @return self
      */
-    public function setBroderie($broderie)
+    public function setEmbroidery($embroidery)
     {
-        $this->broderie = $broderie;
+        $this->embroidery = $embroidery;
 
         return $this;
     }
 
     /**
-     * Gets the value of taille.
+     * Gets the value of size.
      *
      * @return string
      */
-    public function getTaille()
+    public function getSize()
     {
-        return $this->taille;
+        return $this->size;
     }
 
     /**
-     * Sets the value of taille.
+     * Sets the value of size.
      *
-     * @param string $taille the taille
+     * @param string $size the size
      *
      * @return self
      */
-    public function setTaille($taille)
+    public function setSize($size)
     {
-        $this->taille = $taille;
+        $this->size = $size;
 
         return $this;
     }
@@ -306,81 +273,67 @@ class Configuration
     }
 
     /**
-     * Gets the Agrement.
+     * Gets the value of accessories.
      *
-     * @return mixed
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAgrements()
+    public function getAccessories()
     {
-        return $this->agrements;
+        return $this->accessories;
     }
 
     /**
-     * Sets the Agrement.
+     * Adds a value of accessories.
      *
-     * @param mixed $agrements the agrements
-     *
-     * @return self
-     */
-    public function setAgrements($agrements)
-    {
-        $this->agrements = $agrements;
-
-        return $this;
-    }
-
-    /**
-     * Adds an Agrement.
-     *
-     * @param Agrement $agrement the agrement
+     * @param Accessory $accessory the accessory
      *
      * @return self
      */
-    public function addAgrement(Agrement $agrement)
+    public function addAccessory(Accessory $accessory)
     {
-        if (!$this->agrements->contains($agrement)) {
-            $this->agrements->add($agrement);
+        if (!$this->accessories->contains($accessory)) {
+            $this->accessories->add($accessory);
         }
 
         return $this;
     }
 
     /**
-     * Removes an Agrement.
+     * Removes a value of accessories.
      *
-     * @param Agrement $agrement the agrement
+     * @param Accessory $accessory the accessory
      *
      * @return self
      */
-    public function removeAgrement(Agrement $agrement)
+    public function removeAccessory(Accessory $accessory)
     {
-        if ($this->agrements->contains($agrement)) {
-            $this->agrements->removeElement($agrement);
+        if ($this->accessories->contains($accessory)) {
+            $this->accessories->add($accessory);
         }
 
         return $this;
     }
 
     /**
-     * Gets the value of realisation.
+     * Gets the value of creation.
      *
-     * @return mixed
+     * @return Creation
      */
-    public function getRealisation()
+    public function getCreation()
     {
-        return $this->realisation;
+        return $this->creation;
     }
 
     /**
-     * Sets the value of realisation.
+     * Sets the value of creation.
      *
-     * @param mixed $realisation the realisation
+     * @param Creation $creation the creation
      *
      * @return self
      */
-    public function setRealisation(Realisation $realisation)
+    public function setCreation(Creation $creation)
     {
-        $this->realisation = $realisation;
+        $this->creation = $creation;
 
         return $this;
     }

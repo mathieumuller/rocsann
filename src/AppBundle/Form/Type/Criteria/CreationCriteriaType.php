@@ -4,10 +4,10 @@ namespace AppBundle\Form\Type\Criteria;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\AbstractType;
 
 class CreationCriteriaType extends AbstractType
 {
@@ -19,124 +19,134 @@ class CreationCriteriaType extends AbstractType
     {
         $builder
             ->add(
-                'categorie',
-                EntityType::class,
+                'diaporama',
+                Type\CheckboxType::class,
                 [
-                    'label' => 'labels.form.categorie',
-                    'class' => 'AppBundle\Entity\Categorie',
-                    'query_builder' => function (EntityRepository $er) {
-                        return $er->createQueryBuilder('c')
-                            ->orderBy('c.libelle', 'ASC');
-                    },
+                    'label' => 'rocsann.creation.is_diaporama',
                     'required' => false,
                 ]
             )
             ->add(
-                'forme',
+                'form',
                 EntityType::class,
                 [
-                    'label' => 'labels.form.forme',
-                    'class' => 'AppBundle\Entity\Forme',
+                    'class' => 'AppBundle:Form',
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('f')
-                            ->orderBy('f.libelle', 'ASC');
+                            ->orderBy('f.label', 'ASC')
+                        ;
                     },
+                    'choice_label' => 'label',
+                    'label' => 'rocsann.creation.form',
+                    'placeholder' => 'rocsann.creation.placeholder.form',
                     'required' => false,
                 ]
             )
             ->add(
-                'matiere',
-                Type\ChoiceType::class,
+                'category',
+                EntityType::class,
                 [
-                    'label' => 'labels.form.matiere',
-                    'choices' => $options['matieres'],
+                    'class' => 'AppBundle:Category',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('c')
+                            ->orderBy('c.label', 'ASC')
+                        ;
+                    },
+                    'choice_label' => 'label',
+                    'label' => 'rocsann.creation.category',
+                    'placeholder' => 'rocsann.creation.placeholder.category',
                     'required' => false,
                 ]
             )
             ->add(
-                'sort',
-                Type\HiddenType::class
+                'accessories',
+                EntityType::class,
+                [
+                    'class' => 'AppBundle:Category',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('a')
+                            ->orderBy('a.label', 'ASC')
+                        ;
+                    },
+                    'multiple' => true,
+                    'choice_label' => 'label',
+                    'label' => 'rocsann.creation.accessories',
+                    'placeholder' => 'rocsann.creation.placeholder.accessories',
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'reference',
+                Type\TextType::class,
+                [
+                    'label' => 'rocsann.creation.reference',
+                    'attr' => ['placeholder' => 'rocsann.criteria.placeholder.reference'],
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'label',
+                Type\TextType::class,
+                [
+                    'label' => 'rocsann.creation.reference',
+                    'attr' => ['placeholder' => 'rocsann.criteria.placeholder.reference'],
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'matter',
+                Type\TextType::class,
+                [
+                    'label' => 'rocsann.creation.matter',
+                    'attr' => ['placeholder' => 'rocsann.criteria.placeholder.matter'],
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'embroidery',
+                Type\TextType::class,
+                [
+                    'label' => 'rocsann.creation.embroidery',
+                    'attr' => ['placeholder' => 'rocsann.criteria.placeholder.embroidery'],
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'fringe',
+                Type\TextType::class,
+                [
+                    'label' => 'rocsann.creation.fringe',
+                    'attr' => ['placeholder' => 'rocsann.criteria.placeholder.fringe'],
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'braid',
+                Type\TextType::class,
+                [
+                    'label' => 'rocsann.creation.braid',
+                    'attr' => ['placeholder' => 'rocsann.criteria.placeholder.braid'],
+                    'required' => false,
+                ]
             )
             ->add(
                 'search',
                 Type\SubmitType::class,
                 [
                     'label' => 'search',
-                    'attr' => [
-                        'class' => 'btn-floating waves-effect waves-light grey right',
-                        'icon' => 'search',
-                    ],
+                    'attr' => ['class' => 'btn right'],
                 ]
             )
-            /*->add(
-                'dateFrom',
-                Type\DateType::class,
-                [
-                    'label' => 'generics.date_range',
-                    'required' => false,
-                    'range' => true,
-                ]
-            )
-            ->add(
-                'dateTo',
-                Type\DateType::class,
-                [
-                    'label' => 'generics.date_range',
-                    'required' => false,
-                    'range' => true,
-                ]
-            )
-            ->add(
-                'levels',
-                EntityType::class,
-                [
-                    'label' => 'main.levels',
-                    'class' => 'CoreBundle\Entity\Level',
-                    'multiple' => true,
-                    'attr' => [
-                        'data-actions-box' => true,
-                    ],
-                    'query_builder' => function (EntityRepository $er) {
-                        return $er->createQueryBuilder('c')
-                            ->orderBy('c.id', 'DESC');
-                    },
-                    'selectpicker' => [
-                        'max_size' => 10,
-                        'width' => '100%',
-                        'placeholder' => 'placeholder.all_levels',
-                    ],
-                    'required' => false,
-                ]
-            )
-            ->add(
-                'pageLength',
-                Type\HiddenType::class,
-                ['attr' => ['class' => 'page-length']]
-            )
-            ->add(
-                'entryRequests',
-                Type\HiddenType::class
-            )
-            ->add(
-                'sort',
-                Type\HiddenType::class,
-                ['attr' => ['class' => 'sort-value']]
-            )*/
         ;
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            [
-                'data_class' => 'AppBundle\\Model\\Criteria\\CreationCriteria',
-                'csrf_token_id' => 'creations_criteria',
-                'method' => 'GET',
-                'matieres' => [],
-            ]
-        );
+        $resolver->setDefaults([
+            'data_class' => 'AppBundle\\Model\\Criteria\\CreationCriteria',
+        ]);
     }
 }

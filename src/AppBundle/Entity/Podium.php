@@ -2,76 +2,62 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Podium
- *
- * @ORM\Table(name="podium", indexes={@ORM\Index(name="idUtil", columns={"idUtil"})})
- * @ORM\Entity
  */
 class Podium
 {
     /**
+     * @var integer
+     */
+    private $idphoto;
+
+    /**
      * @var string
-     *
-     * @ORM\Column(name="commentaire", type="string", length=150, nullable=true)
      */
     private $commentaire;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="datePhoto", type="date", nullable=false)
      */
     private $datephoto;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="forme", type="string", length=50, nullable=true)
      */
-    private $forme;
+    private $forme = 'Autre';
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="chemin", type="blob", nullable=false)
      */
     private $chemin;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="valid", type="integer", nullable=false)
      */
-    private $valid;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="idPhoto", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idphoto;
+    private $valid = '0';
 
     /**
      * @var \AppBundle\Entity\Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUtil", referencedColumnName="idUtil")
-     * })
      */
     private $idutil;
 
 
+    /**
+     * Get idphoto
+     *
+     * @return integer
+     */
+    public function getIdphoto()
+    {
+        return $this->idphoto;
+    }
 
     /**
      * Set commentaire
      *
      * @param string $commentaire
+     *
      * @return Podium
      */
     public function setCommentaire($commentaire)
@@ -84,7 +70,7 @@ class Podium
     /**
      * Get commentaire
      *
-     * @return string 
+     * @return string
      */
     public function getCommentaire()
     {
@@ -95,6 +81,7 @@ class Podium
      * Set datephoto
      *
      * @param \DateTime $datephoto
+     *
      * @return Podium
      */
     public function setDatephoto($datephoto)
@@ -107,7 +94,7 @@ class Podium
     /**
      * Get datephoto
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDatephoto()
     {
@@ -118,6 +105,7 @@ class Podium
      * Set forme
      *
      * @param string $forme
+     *
      * @return Podium
      */
     public function setForme($forme)
@@ -130,7 +118,7 @@ class Podium
     /**
      * Get forme
      *
-     * @return string 
+     * @return string
      */
     public function getForme()
     {
@@ -141,6 +129,7 @@ class Podium
      * Set chemin
      *
      * @param string $chemin
+     *
      * @return Podium
      */
     public function setChemin($chemin)
@@ -153,7 +142,7 @@ class Podium
     /**
      * Get chemin
      *
-     * @return string 
+     * @return string
      */
     public function getChemin()
     {
@@ -164,6 +153,7 @@ class Podium
      * Set valid
      *
      * @param integer $valid
+     *
      * @return Podium
      */
     public function setValid($valid)
@@ -176,7 +166,7 @@ class Podium
     /**
      * Get valid
      *
-     * @return integer 
+     * @return integer
      */
     public function getValid()
     {
@@ -184,19 +174,10 @@ class Podium
     }
 
     /**
-     * Get idphoto
-     *
-     * @return integer 
-     */
-    public function getIdphoto()
-    {
-        return $this->idphoto;
-    }
-
-    /**
      * Set idutil
      *
      * @param \AppBundle\Entity\Utilisateur $idutil
+     *
      * @return Podium
      */
     public function setIdutil(\AppBundle\Entity\Utilisateur $idutil = null)
@@ -209,10 +190,11 @@ class Podium
     /**
      * Get idutil
      *
-     * @return \AppBundle\Entity\Utilisateur 
+     * @return \AppBundle\Entity\Utilisateur
      */
     public function getIdutil()
     {
         return $this->idutil;
     }
 }
+

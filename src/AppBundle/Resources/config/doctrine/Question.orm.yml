@@ -1,0 +1,22 @@
+AppBundle\Entity\Question:
+    type: entity
+    table: question
+    id:
+        idquestion:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idQuestion
+            generator:
+                strategy: IDENTITY
+    fields:
+        libquestion:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: libQuestion
+    lifecycleCallbacks: {  }

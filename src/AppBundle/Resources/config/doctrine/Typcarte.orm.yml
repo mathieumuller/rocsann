@@ -1,0 +1,28 @@
+AppBundle\Entity\Typcarte:
+    type: entity
+    table: typcarte
+    id:
+        idtype:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idType
+            generator:
+                strategy: IDENTITY
+    fields:
+        libtype:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: libType
+        prixcarte:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: prixCarte
+    lifecycleCallbacks: {  }

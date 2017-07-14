@@ -1,0 +1,36 @@
+SaleBundle\Model\Customer:
+    type: mappedSuperclass
+    uniqueConstraints:
+        UNIQ_CUSTOMER_REFERENCE:
+            columns:
+                - reference
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        reference:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+        firstname:
+            type: string
+            nullable: true
+            length: 80
+            options:
+                fixed: false
+        lastname:
+            type: string
+            nullable: true
+            length: 80
+            options:
+                fixed: false
+        businessName:
+            type: string
+            nullable: true
+            length: 80
+            options:
+                fixed: false

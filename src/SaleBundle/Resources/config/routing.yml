@@ -1,0 +1,3 @@
+sale_homepage:
+    path:     /
+    defaults: { _controller: SaleBundle:Default:index }

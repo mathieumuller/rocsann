@@ -4,9 +4,16 @@ namespace AppBundle\Model\Criteria;
 
 class CreationCriteria
 {
-    public $sort = 'crea.createdAt,DESC';
-    public $categorie;
-    public $forme;
-    public $matiere;
-    public $couleur;
+    public $diaporama;
+    public $form;
+    public $category;
+    public $reference;
+    public $label;
+    public $accessories;
+    public $matter;
+    public $embroidery;
+    public $fringe;
+    public $braid;
+    public $colour;
+    public $price;
 }

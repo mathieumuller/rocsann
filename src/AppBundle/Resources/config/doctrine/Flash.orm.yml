@@ -1,0 +1,60 @@
+AppBundle\Entity\Flash:
+    type: entity
+    table: flash
+    indexes:
+        FK_flash_idCrea:
+            columns:
+                - idCrea
+    id:
+        idflash:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idFlash
+            generator:
+                strategy: IDENTITY
+    fields:
+        prixflash:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: prixFlash
+        stock:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        remise:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        tailleflash:
+            type: string
+            nullable: false
+            length: 25
+            options:
+                fixed: false
+            column: tailleFlash
+        fraisport:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: fraisPort
+    manyToOne:
+        idcrea:
+            targetEntity: Crea
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCrea:
+                    referencedColumnName: idCrea
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

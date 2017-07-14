@@ -1,0 +1,57 @@
+AppBundle\Entity\Accessoire:
+    type: entity
+    table: accessoire
+    id:
+        idaccess:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idAccess
+            generator:
+                strategy: IDENTITY
+    fields:
+        libaccess:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+            column: libAccess
+    manyToMany:
+        idlgn:
+            targetEntity: ConfigComm
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: idaccess
+            joinTable:
+                name: access_comm
+                joinColumns:
+                    -
+                        name: idAccess
+                        referencedColumnName: idAccess
+                inverseJoinColumns:
+                    -
+                        name: idLgn
+                        referencedColumnName: idLgn
+            orderBy: null
+        idcrea:
+            targetEntity: Crea
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: idaccess
+            joinTable:
+                name: access_crea
+                joinColumns:
+                    -
+                        name: idAccess
+                        referencedColumnName: idAccess
+                inverseJoinColumns:
+                    -
+                        name: idCrea
+                        referencedColumnName: idCrea
+            orderBy: null
+    lifecycleCallbacks: {  }

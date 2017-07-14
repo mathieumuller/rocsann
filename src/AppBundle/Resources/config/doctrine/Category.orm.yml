@@ -1,0 +1,26 @@
+AppBundle\Entity\Category:
+    type: entity
+    table: category
+    uniqueConstraints:
+        UNIQ_CATEGORY_CODE:
+            columns:
+                - code
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        label:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        code:
+            type: string
+            nullable: false
+            length: 12
+            options:
+                fixed: false
+

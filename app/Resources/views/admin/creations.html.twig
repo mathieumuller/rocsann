@@ -1,0 +1,52 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block section_title %}
+    {{ "rocsann.creation.title"|trans }}
+{% endblock %}
+
+{% block admin_body %}
+    <div id="slide-out" class="side-nav padding-10">
+        <h4>Filtrer par</h4>
+        {{ form(criteria) }}
+    </div>
+    <div class="row">
+        <a href="#" data-activates="slide-out" class="button-collapse right"><i class="material-icons">search</i></a>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <table>
+                <caption>Liste des créations</caption>
+                <thead>
+                    <tr>
+                        <th>Photo</th>
+                        <th>Référence</th>
+                        <th>Type</th>
+                        <th>Forme</th>
+                        <th>Label</th>
+                        <th>Prix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for creation in creations %}
+                        <tr>
+                            <td><img src="{{ vich_uploader_asset(creation, 'photoFile')| imagine_filter('md_thumb') }}" alt="{{ creation.reference }}"></td>
+                            <td>{{ creation.reference }}</td>
+                            <td>{{ creation.id }}</td>
+                            <td>{{ creation.form.label }}</td>
+                            <td>{{ creation.label }}</td>
+                            <td>{{ creation.price }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(".button-collapse").sideNav();
+    </script>
+{% endblock %}

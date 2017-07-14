@@ -1,0 +1,15 @@
+AppBundle\Entity\Typutil:
+    type: entity
+    table: typutil
+    id:
+        libtyp:
+            type: string
+            nullable: false
+            length: 25
+            options:
+                fixed: false
+            id: true
+            column: libTyp
+            generator:
+                strategy: IDENTITY
+    lifecycleCallbacks: {  }

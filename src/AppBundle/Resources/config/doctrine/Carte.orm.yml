@@ -1,0 +1,84 @@
+AppBundle\Entity\Carte:
+    type: entity
+    table: carte
+    indexes:
+        idType:
+            columns:
+                - idType
+        commanditaire:
+            columns:
+                - commanditaire
+    id:
+        idcarte:
+            type: string
+            nullable: false
+            length: 13
+            options:
+                fixed: false
+                comment: 'id unique généré par php'
+            id: true
+            column: idCarte
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombenef:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+                comment: 'nom du bénéficiaire de la carte'
+            column: nomBenef
+        prenbenef:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+                comment: 'prénom du bénéficiare de la carte'
+            column: prenBenef
+        modpaie:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+            column: modPaie
+        paiement:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        dateachat:
+            type: date
+            nullable: false
+            column: dateAchat
+        util:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+    manyToOne:
+        idtype:
+            targetEntity: Typcarte
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idType:
+                    referencedColumnName: idType
+            orphanRemoval: false
+        commanditaire:
+            targetEntity: Utilisateur
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                commanditaire:
+                    referencedColumnName: idUtil
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,48 @@
+AppBundle\Entity\Livre:
+    type: entity
+    table: livre
+    indexes:
+        FK_livre_idUtil:
+            columns:
+                - idUtil
+    id:
+        idliv:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idLiv
+            generator:
+                strategy: IDENTITY
+    fields:
+        msgliv:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: msgLiv
+        datliv:
+            type: date
+            nullable: false
+            column: datLiv
+        signlivr:
+            type: string
+            nullable: false
+            length: 60
+            options:
+                fixed: false
+            column: signLivr
+    manyToOne:
+        idutil:
+            targetEntity: Utilisateur
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUtil:
+                    referencedColumnName: idUtil
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

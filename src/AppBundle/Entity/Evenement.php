@@ -2,59 +2,52 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Evenement
- *
- * @ORM\Table(name="evenement")
- * @ORM\Entity
  */
 class Evenement
 {
     /**
+     * @var integer
+     */
+    private $idevt;
+
+    /**
      * @var string
-     *
-     * @ORM\Column(name="titreEvt", type="string", length=100, nullable=false)
      */
     private $titreevt;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="descrEvt", type="text", length=65535, nullable=false)
      */
     private $descrevt;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="photoEvt", type="blob", nullable=false)
      */
     private $photoevt;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="dateEvt", type="date", nullable=false)
      */
     private $dateevt;
 
+
     /**
-     * @var integer
+     * Get idevt
      *
-     * @ORM\Column(name="idEvt", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @return integer
      */
-    private $idevt;
-
-
+    public function getIdevt()
+    {
+        return $this->idevt;
+    }
 
     /**
      * Set titreevt
      *
      * @param string $titreevt
+     *
      * @return Evenement
      */
     public function setTitreevt($titreevt)
@@ -67,7 +60,7 @@ class Evenement
     /**
      * Get titreevt
      *
-     * @return string 
+     * @return string
      */
     public function getTitreevt()
     {
@@ -78,6 +71,7 @@ class Evenement
      * Set descrevt
      *
      * @param string $descrevt
+     *
      * @return Evenement
      */
     public function setDescrevt($descrevt)
@@ -90,7 +84,7 @@ class Evenement
     /**
      * Get descrevt
      *
-     * @return string 
+     * @return string
      */
     public function getDescrevt()
     {
@@ -101,6 +95,7 @@ class Evenement
      * Set photoevt
      *
      * @param string $photoevt
+     *
      * @return Evenement
      */
     public function setPhotoevt($photoevt)
@@ -113,7 +108,7 @@ class Evenement
     /**
      * Get photoevt
      *
-     * @return string 
+     * @return string
      */
     public function getPhotoevt()
     {
@@ -124,6 +119,7 @@ class Evenement
      * Set dateevt
      *
      * @param \DateTime $dateevt
+     *
      * @return Evenement
      */
     public function setDateevt($dateevt)
@@ -136,20 +132,11 @@ class Evenement
     /**
      * Get dateevt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateevt()
     {
         return $this->dateevt;
     }
-
-    /**
-     * Get idevt
-     *
-     * @return integer 
-     */
-    public function getIdevt()
-    {
-        return $this->idevt;
-    }
 }
+

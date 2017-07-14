@@ -1,0 +1,85 @@
+AppBundle\Entity\Configuration:
+    type: entity
+    table: configuration
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        matter:
+            type: string
+            nullable: false
+            length: 150
+            options:
+                fixed: false
+        colour:
+            type: string
+            nullable: false
+            length: 150
+            options:
+                fixed: false
+        border:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+        braid:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+        fringe:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+        embroidery:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+        size:
+            type: string
+            nullable: true
+            length: null
+            options:
+                fixed: false
+        logo:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    oneToOne:
+        creation:
+            targetEntity: AppBundle\Entity\Creation
+            mappedBy: configuration
+            fetch: LAZY
+
+    manyToMany:
+        accessories:
+            targetEntity: AppBundle\Entity\Accessory
+            inversedBy: configurations
+            fetch: LAZY
+            joinTable:
+                name: configuration_accessory
+                joinColumns:
+                    -
+                        name: configuration_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: accessory_id
+                        referencedColumnName: id
+            orderBy: {"label": "ASC"}
+
+    lifecycleCallbacks: {  }

@@ -1,0 +1,7 @@
+AppBundle\Entity\File:
+    type: embeddable
+    fields:
+        name: { type: string }
+        originalName: { type: string }
+        mimeType: { type: string }
+        size: { type: integer }

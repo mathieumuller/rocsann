@@ -2,93 +2,72 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Carte
- *
- * @ORM\Table(name="carte", indexes={@ORM\Index(name="idType", columns={"idType"}), @ORM\Index(name="commanditaire", columns={"commanditaire"})})
- * @ORM\Entity
  */
 class Carte
 {
     /**
      * @var string
-     *
-     * @ORM\Column(name="nomBenef", type="string", length=50, nullable=false)
+     */
+    private $idcarte;
+
+    /**
+     * @var string
      */
     private $nombenef;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="prenBenef", type="string", length=50, nullable=false)
      */
     private $prenbenef;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="modPaie", type="string", length=30, nullable=false)
      */
     private $modpaie;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="paiement", type="integer", nullable=false)
      */
-    private $paiement;
+    private $paiement = '0';
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="dateAchat", type="date", nullable=false)
      */
     private $dateachat;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="util", type="integer", nullable=false)
      */
-    private $util;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="idCarte", type="string", length=13)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idcarte;
-
-    /**
-     * @var \AppBundle\Entity\Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="commanditaire", referencedColumnName="idUtil")
-     * })
-     */
-    private $commanditaire;
+    private $util = '0';
 
     /**
      * @var \AppBundle\Entity\Typcarte
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Typcarte")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idType", referencedColumnName="idType")
-     * })
      */
     private $idtype;
 
+    /**
+     * @var \AppBundle\Entity\Utilisateur
+     */
+    private $commanditaire;
 
+
+    /**
+     * Get idcarte
+     *
+     * @return string
+     */
+    public function getIdcarte()
+    {
+        return $this->idcarte;
+    }
 
     /**
      * Set nombenef
      *
      * @param string $nombenef
+     *
      * @return Carte
      */
     public function setNombenef($nombenef)
@@ -101,7 +80,7 @@ class Carte
     /**
      * Get nombenef
      *
-     * @return string 
+     * @return string
      */
     public function getNombenef()
     {
@@ -112,6 +91,7 @@ class Carte
      * Set prenbenef
      *
      * @param string $prenbenef
+     *
      * @return Carte
      */
     public function setPrenbenef($prenbenef)
@@ -124,7 +104,7 @@ class Carte
     /**
      * Get prenbenef
      *
-     * @return string 
+     * @return string
      */
     public function getPrenbenef()
     {
@@ -135,6 +115,7 @@ class Carte
      * Set modpaie
      *
      * @param string $modpaie
+     *
      * @return Carte
      */
     public function setModpaie($modpaie)
@@ -147,7 +128,7 @@ class Carte
     /**
      * Get modpaie
      *
-     * @return string 
+     * @return string
      */
     public function getModpaie()
     {
@@ -158,6 +139,7 @@ class Carte
      * Set paiement
      *
      * @param integer $paiement
+     *
      * @return Carte
      */
     public function setPaiement($paiement)
@@ -170,7 +152,7 @@ class Carte
     /**
      * Get paiement
      *
-     * @return integer 
+     * @return integer
      */
     public function getPaiement()
     {
@@ -181,6 +163,7 @@ class Carte
      * Set dateachat
      *
      * @param \DateTime $dateachat
+     *
      * @return Carte
      */
     public function setDateachat($dateachat)
@@ -193,7 +176,7 @@ class Carte
     /**
      * Get dateachat
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateachat()
     {
@@ -204,6 +187,7 @@ class Carte
      * Set util
      *
      * @param integer $util
+     *
      * @return Carte
      */
     public function setUtil($util)
@@ -216,7 +200,7 @@ class Carte
     /**
      * Get util
      *
-     * @return integer 
+     * @return integer
      */
     public function getUtil()
     {
@@ -224,42 +208,10 @@ class Carte
     }
 
     /**
-     * Get idcarte
-     *
-     * @return string 
-     */
-    public function getIdcarte()
-    {
-        return $this->idcarte;
-    }
-
-    /**
-     * Set commanditaire
-     *
-     * @param \AppBundle\Entity\Utilisateur $commanditaire
-     * @return Carte
-     */
-    public function setCommanditaire(\AppBundle\Entity\Utilisateur $commanditaire = null)
-    {
-        $this->commanditaire = $commanditaire;
-
-        return $this;
-    }
-
-    /**
-     * Get commanditaire
-     *
-     * @return \AppBundle\Entity\Utilisateur 
-     */
-    public function getCommanditaire()
-    {
-        return $this->commanditaire;
-    }
-
-    /**
      * Set idtype
      *
      * @param \AppBundle\Entity\Typcarte $idtype
+     *
      * @return Carte
      */
     public function setIdtype(\AppBundle\Entity\Typcarte $idtype = null)
@@ -272,10 +224,35 @@ class Carte
     /**
      * Get idtype
      *
-     * @return \AppBundle\Entity\Typcarte 
+     * @return \AppBundle\Entity\Typcarte
      */
     public function getIdtype()
     {
         return $this->idtype;
     }
+
+    /**
+     * Set commanditaire
+     *
+     * @param \AppBundle\Entity\Utilisateur $commanditaire
+     *
+     * @return Carte
+     */
+    public function setCommanditaire(\AppBundle\Entity\Utilisateur $commanditaire = null)
+    {
+        $this->commanditaire = $commanditaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commanditaire
+     *
+     * @return \AppBundle\Entity\Utilisateur
+     */
+    public function getCommanditaire()
+    {
+        return $this->commanditaire;
+    }
 }
+

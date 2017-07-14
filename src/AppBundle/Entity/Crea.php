@@ -2,114 +2,78 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
- * Crea.
- *
- * @ORM\Table(name="crea", indexes={@ORM\Index(name="FK_crea_idProduit", columns={"idProduit"})})
- * @ORM\Entity
+ * Crea
  */
 class Crea
 {
     /**
+     * @var integer
+     */
+    private $idcrea;
+
+    /**
      * @var string
-     *
-     * @ORM\Column(name="photo", type="string", nullable=true)
      */
     private $photo;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="diapo", type="boolean", nullable=true)
+     * @var integer
      */
     private $diapo;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="prix", type="integer", nullable=true)
+     * @var integer
      */
     private $prix;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="descrCrea", type="string", length=75, nullable=true)
      */
     private $descrcrea;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="couleur", type="string", length=50, nullable=false)
      */
     private $couleur;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="matiere", type="string", length=40, nullable=false)
      */
     private $matiere;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="bordure", type="string", length=40, nullable=false)
      */
     private $bordure;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="galon", type="string", length=50, nullable=false)
      */
     private $galon;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="frange", type="string", length=40, nullable=false)
      */
     private $frange;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="broderie", type="string", length=40, nullable=false)
      */
     private $broderie;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idCrea", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idcrea;
-
-    /**
      * @var \AppBundle\Entity\Produit
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Produit")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idProduit", referencedColumnName="idProduit")
-     * })
      */
     private $idproduit;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Accessoire", mappedBy="idcrea")
      */
     private $idaccess;
 
     /**
-     * Constructor.
+     * Constructor
      */
     public function __construct()
     {
@@ -117,7 +81,17 @@ class Crea
     }
 
     /**
-     * Set photo.
+     * Get idcrea
+     *
+     * @return integer
+     */
+    public function getIdcrea()
+    {
+        return $this->idcrea;
+    }
+
+    /**
+     * Set photo
      *
      * @param string $photo
      *
@@ -131,7 +105,7 @@ class Crea
     }
 
     /**
-     * Get photo.
+     * Get photo
      *
      * @return string
      */
@@ -141,9 +115,9 @@ class Crea
     }
 
     /**
-     * Set diapo.
+     * Set diapo
      *
-     * @param int $diapo
+     * @param integer $diapo
      *
      * @return Crea
      */
@@ -155,9 +129,9 @@ class Crea
     }
 
     /**
-     * Get diapo.
+     * Get diapo
      *
-     * @return int
+     * @return integer
      */
     public function getDiapo()
     {
@@ -165,9 +139,9 @@ class Crea
     }
 
     /**
-     * Set prix.
+     * Set prix
      *
-     * @param int $prix
+     * @param integer $prix
      *
      * @return Crea
      */
@@ -179,9 +153,9 @@ class Crea
     }
 
     /**
-     * Get prix.
+     * Get prix
      *
-     * @return int
+     * @return integer
      */
     public function getPrix()
     {
@@ -189,7 +163,7 @@ class Crea
     }
 
     /**
-     * Set descrcrea.
+     * Set descrcrea
      *
      * @param string $descrcrea
      *
@@ -203,7 +177,7 @@ class Crea
     }
 
     /**
-     * Get descrcrea.
+     * Get descrcrea
      *
      * @return string
      */
@@ -213,7 +187,7 @@ class Crea
     }
 
     /**
-     * Set couleur.
+     * Set couleur
      *
      * @param string $couleur
      *
@@ -227,7 +201,7 @@ class Crea
     }
 
     /**
-     * Get couleur.
+     * Get couleur
      *
      * @return string
      */
@@ -237,7 +211,7 @@ class Crea
     }
 
     /**
-     * Set matiere.
+     * Set matiere
      *
      * @param string $matiere
      *
@@ -251,7 +225,7 @@ class Crea
     }
 
     /**
-     * Get matiere.
+     * Get matiere
      *
      * @return string
      */
@@ -261,7 +235,7 @@ class Crea
     }
 
     /**
-     * Set bordure.
+     * Set bordure
      *
      * @param string $bordure
      *
@@ -275,7 +249,7 @@ class Crea
     }
 
     /**
-     * Get bordure.
+     * Get bordure
      *
      * @return string
      */
@@ -285,7 +259,7 @@ class Crea
     }
 
     /**
-     * Set galon.
+     * Set galon
      *
      * @param string $galon
      *
@@ -299,7 +273,7 @@ class Crea
     }
 
     /**
-     * Get galon.
+     * Get galon
      *
      * @return string
      */
@@ -309,7 +283,7 @@ class Crea
     }
 
     /**
-     * Set frange.
+     * Set frange
      *
      * @param string $frange
      *
@@ -323,7 +297,7 @@ class Crea
     }
 
     /**
-     * Get frange.
+     * Get frange
      *
      * @return string
      */
@@ -333,7 +307,7 @@ class Crea
     }
 
     /**
-     * Set broderie.
+     * Set broderie
      *
      * @param string $broderie
      *
@@ -347,7 +321,7 @@ class Crea
     }
 
     /**
-     * Get broderie.
+     * Get broderie
      *
      * @return string
      */
@@ -357,17 +331,7 @@ class Crea
     }
 
     /**
-     * Get idcrea.
-     *
-     * @return int
-     */
-    public function getIdcrea()
-    {
-        return $this->idcrea;
-    }
-
-    /**
-     * Set idproduit.
+     * Set idproduit
      *
      * @param \AppBundle\Entity\Produit $idproduit
      *
@@ -381,7 +345,7 @@ class Crea
     }
 
     /**
-     * Get idproduit.
+     * Get idproduit
      *
      * @return \AppBundle\Entity\Produit
      */
@@ -391,7 +355,7 @@ class Crea
     }
 
     /**
-     * Add idaccess.
+     * Add idaccess
      *
      * @param \AppBundle\Entity\Accessoire $idaccess
      *
@@ -405,7 +369,7 @@ class Crea
     }
 
     /**
-     * Remove idaccess.
+     * Remove idaccess
      *
      * @param \AppBundle\Entity\Accessoire $idaccess
      */
@@ -415,7 +379,7 @@ class Crea
     }
 
     /**
-     * Get idaccess.
+     * Get idaccess
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -424,3 +388,4 @@ class Crea
         return $this->idaccess;
     }
 }
+

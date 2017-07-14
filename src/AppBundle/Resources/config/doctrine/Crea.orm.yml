@@ -1,0 +1,98 @@
+AppBundle\Entity\Crea:
+    type: entity
+    table: crea
+    indexes:
+        FK_crea_idProduit:
+            columns:
+                - idProduit
+    id:
+        idcrea:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idCrea
+            generator:
+                strategy: IDENTITY
+    fields:
+        photo:
+            type: blob
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        diapo:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        prix:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        descrcrea:
+            type: string
+            nullable: true
+            length: 75
+            options:
+                fixed: false
+            column: descrCrea
+        couleur:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        matiere:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+        bordure:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+        galon:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        frange:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+        broderie:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+    manyToOne:
+        idproduit:
+            targetEntity: Produit
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idProduit:
+                    referencedColumnName: idProduit
+            orphanRemoval: false
+    manyToMany:
+        idaccess:
+            targetEntity: Accessoire
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: idcrea
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

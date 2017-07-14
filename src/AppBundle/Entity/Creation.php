@@ -2,50 +2,53 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Traits;
+use Symfony\Component\HttpFoundation\File\File;
+use AppBundle\Entity\File as EmbeddedFile;
 
 /**
  * Creation.
- *
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CreationRepository")
  */
-class Creation extends Realisation
+class Creation extends Product
 {
-    const PHOTO_PATH = '/public/images/';
+    use Traits\RealisationTrait;
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="photo", type="string", nullable=true)
+     * @var File
+     */
+    private $photoFile;
+
+    /**
+     * @var EmbeddedFile
      */
     private $photo;
 
     /**
      * @var bool
-     *
-     * @ORM\Column(name="diaporama", type="boolean", nullable=false, options={"default" : 0})
      */
     private $diaporama = false;
 
-    public function getPhotoUrl()
+    public function __construct()
     {
-        return self::PHOTO_PATH.$this->getPhoto();
-    }
-
-    public function getDescription()
-    {
-        $config = $this->getConfiguration();
-        $categorie = $this->getCategorie() ? $this->getCategorie()->getLibelle() : '';
-        $forme = $this->getForme() ? $this->getForme()->getLibelle() : '';
-        $matiere = $config->getMatiere();
-        $couleur = $config->getCouleur();
-
-        $description = [$categorie, $forme, $matiere, $couleur];
-
-        return implode(' ', array_filter($description, 'strlen'));
+        $this->photo = new EmbeddedFile();
     }
 
     /**
-     * Gets the value of photo.
+     * Sets the value of photo.
+     *
+     * @param EmbeddedFile $photo the photo
+     *
+     * @return self
+     */
+    protected function setPhoto(EmbeddedFile $photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo.
      *
      * @return string
      */
@@ -55,21 +58,21 @@ class Creation extends Realisation
     }
 
     /**
-     * Sets the value of photo.
+     * Set diaporama.
      *
-     * @param string $photo the photo
+     * @param bool $diaporama
      *
-     * @return self
+     * @return Realisation
      */
-    public function setPhoto($photo)
+    public function setDiaporama($diaporama)
     {
-        $this->photo = $photo;
+        $this->diaporama = $diaporama;
 
         return $this;
     }
 
     /**
-     * Gets the value of diaporama.
+     * Get diaporama.
      *
      * @return bool
      */
@@ -79,16 +82,32 @@ class Creation extends Realisation
     }
 
     /**
-     * Sets the value of diaporama.
+     * Gets the value of photoFile.
      *
-     * @param bool $diaporama the diaporama
-     *
-     * @return self
+     * @return File
      */
-    public function setDiaporama($diaporama)
+    public function getPhotoFile()
     {
-        $this->diaporama = $diaporama;
+        return $this->photoFile;
+    }
 
-        return $this;
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|UploadedFile $photo
+     */
+    public function setPhotoFile(File $photo = null)
+    {
+        $this->photoFile = $photo;
+
+        if ($photo) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 }

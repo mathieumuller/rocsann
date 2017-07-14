@@ -2,160 +2,122 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Commande
- *
- * @ORM\Table(name="commande", indexes={@ORM\Index(name="FK_commande_idUtil", columns={"idUtil"})})
- * @ORM\Entity
  */
 class Commande
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="valid", type="string", length=1, nullable=true)
+     * @var integer
      */
-    private $valid;
+    private $idcomm;
+
+    /**
+     * @var string
+     */
+    private $valid = '0';
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="datComm", type="date", nullable=false)
      */
     private $datcomm;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="delai", type="date", nullable=false)
      */
     private $delai;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="repondu", type="text", length=65535, nullable=false)
      */
     private $repondu;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="idFlash", type="integer", nullable=false)
      */
-    private $idflash;
+    private $idflash = '0';
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="idCadeau", type="string", length=13, nullable=false)
      */
-    private $idcadeau;
+    private $idcadeau = '0';
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="refus", type="string", length=1, nullable=false)
      */
-    private $refus;
+    private $refus = '0';
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="accompte", type="string", length=1, nullable=false)
      */
-    private $accompte;
+    private $accompte = '0';
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="paye", type="string", length=1, nullable=false)
      */
-    private $paye;
+    private $paye = '0';
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="envoi", type="string", length=1, nullable=false)
      */
-    private $envoi;
+    private $envoi = '0';
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="datEnvoi", type="date", nullable=false)
      */
     private $datenvoi;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="fini", type="string", length=1, nullable=false)
      */
-    private $fini;
+    private $fini = '0';
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="adrLivr", type="text", length=65535, nullable=false)
      */
     private $adrlivr;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="modPaye", type="string", length=30, nullable=false)
      */
     private $modpaye;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="fraisPort", type="integer", nullable=false)
      */
     private $fraisport;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="suivi", type="string", length=30, nullable=false)
      */
     private $suivi;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="relance", type="integer", nullable=false)
      */
-    private $relance;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="idComm", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idcomm;
+    private $relance = '0';
 
     /**
      * @var \AppBundle\Entity\Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUtil", referencedColumnName="idUtil")
-     * })
      */
     private $idutil;
 
 
+    /**
+     * Get idcomm
+     *
+     * @return integer
+     */
+    public function getIdcomm()
+    {
+        return $this->idcomm;
+    }
 
     /**
      * Set valid
      *
      * @param string $valid
+     *
      * @return Commande
      */
     public function setValid($valid)
@@ -168,7 +130,7 @@ class Commande
     /**
      * Get valid
      *
-     * @return string 
+     * @return string
      */
     public function getValid()
     {
@@ -179,6 +141,7 @@ class Commande
      * Set datcomm
      *
      * @param \DateTime $datcomm
+     *
      * @return Commande
      */
     public function setDatcomm($datcomm)
@@ -191,7 +154,7 @@ class Commande
     /**
      * Get datcomm
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDatcomm()
     {
@@ -202,6 +165,7 @@ class Commande
      * Set delai
      *
      * @param \DateTime $delai
+     *
      * @return Commande
      */
     public function setDelai($delai)
@@ -214,7 +178,7 @@ class Commande
     /**
      * Get delai
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDelai()
     {
@@ -225,6 +189,7 @@ class Commande
      * Set repondu
      *
      * @param string $repondu
+     *
      * @return Commande
      */
     public function setRepondu($repondu)
@@ -237,7 +202,7 @@ class Commande
     /**
      * Get repondu
      *
-     * @return string 
+     * @return string
      */
     public function getRepondu()
     {
@@ -248,6 +213,7 @@ class Commande
      * Set idflash
      *
      * @param integer $idflash
+     *
      * @return Commande
      */
     public function setIdflash($idflash)
@@ -260,7 +226,7 @@ class Commande
     /**
      * Get idflash
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdflash()
     {
@@ -271,6 +237,7 @@ class Commande
      * Set idcadeau
      *
      * @param string $idcadeau
+     *
      * @return Commande
      */
     public function setIdcadeau($idcadeau)
@@ -283,7 +250,7 @@ class Commande
     /**
      * Get idcadeau
      *
-     * @return string 
+     * @return string
      */
     public function getIdcadeau()
     {
@@ -294,6 +261,7 @@ class Commande
      * Set refus
      *
      * @param string $refus
+     *
      * @return Commande
      */
     public function setRefus($refus)
@@ -306,7 +274,7 @@ class Commande
     /**
      * Get refus
      *
-     * @return string 
+     * @return string
      */
     public function getRefus()
     {
@@ -317,6 +285,7 @@ class Commande
      * Set accompte
      *
      * @param string $accompte
+     *
      * @return Commande
      */
     public function setAccompte($accompte)
@@ -329,7 +298,7 @@ class Commande
     /**
      * Get accompte
      *
-     * @return string 
+     * @return string
      */
     public function getAccompte()
     {
@@ -340,6 +309,7 @@ class Commande
      * Set paye
      *
      * @param string $paye
+     *
      * @return Commande
      */
     public function setPaye($paye)
@@ -352,7 +322,7 @@ class Commande
     /**
      * Get paye
      *
-     * @return string 
+     * @return string
      */
     public function getPaye()
     {
@@ -363,6 +333,7 @@ class Commande
      * Set envoi
      *
      * @param string $envoi
+     *
      * @return Commande
      */
     public function setEnvoi($envoi)
@@ -375,7 +346,7 @@ class Commande
     /**
      * Get envoi
      *
-     * @return string 
+     * @return string
      */
     public function getEnvoi()
     {
@@ -386,6 +357,7 @@ class Commande
      * Set datenvoi
      *
      * @param \DateTime $datenvoi
+     *
      * @return Commande
      */
     public function setDatenvoi($datenvoi)
@@ -398,7 +370,7 @@ class Commande
     /**
      * Get datenvoi
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDatenvoi()
     {
@@ -409,6 +381,7 @@ class Commande
      * Set fini
      *
      * @param string $fini
+     *
      * @return Commande
      */
     public function setFini($fini)
@@ -421,7 +394,7 @@ class Commande
     /**
      * Get fini
      *
-     * @return string 
+     * @return string
      */
     public function getFini()
     {
@@ -432,6 +405,7 @@ class Commande
      * Set adrlivr
      *
      * @param string $adrlivr
+     *
      * @return Commande
      */
     public function setAdrlivr($adrlivr)
@@ -444,7 +418,7 @@ class Commande
     /**
      * Get adrlivr
      *
-     * @return string 
+     * @return string
      */
     public function getAdrlivr()
     {
@@ -455,6 +429,7 @@ class Commande
      * Set modpaye
      *
      * @param string $modpaye
+     *
      * @return Commande
      */
     public function setModpaye($modpaye)
@@ -467,7 +442,7 @@ class Commande
     /**
      * Get modpaye
      *
-     * @return string 
+     * @return string
      */
     public function getModpaye()
     {
@@ -478,6 +453,7 @@ class Commande
      * Set fraisport
      *
      * @param integer $fraisport
+     *
      * @return Commande
      */
     public function setFraisport($fraisport)
@@ -490,7 +466,7 @@ class Commande
     /**
      * Get fraisport
      *
-     * @return integer 
+     * @return integer
      */
     public function getFraisport()
     {
@@ -501,6 +477,7 @@ class Commande
      * Set suivi
      *
      * @param string $suivi
+     *
      * @return Commande
      */
     public function setSuivi($suivi)
@@ -513,7 +490,7 @@ class Commande
     /**
      * Get suivi
      *
-     * @return string 
+     * @return string
      */
     public function getSuivi()
     {
@@ -524,6 +501,7 @@ class Commande
      * Set relance
      *
      * @param integer $relance
+     *
      * @return Commande
      */
     public function setRelance($relance)
@@ -536,7 +514,7 @@ class Commande
     /**
      * Get relance
      *
-     * @return integer 
+     * @return integer
      */
     public function getRelance()
     {
@@ -544,19 +522,10 @@ class Commande
     }
 
     /**
-     * Get idcomm
-     *
-     * @return integer 
-     */
-    public function getIdcomm()
-    {
-        return $this->idcomm;
-    }
-
-    /**
      * Set idutil
      *
      * @param \AppBundle\Entity\Utilisateur $idutil
+     *
      * @return Commande
      */
     public function setIdutil(\AppBundle\Entity\Utilisateur $idutil = null)
@@ -569,10 +538,11 @@ class Commande
     /**
      * Get idutil
      *
-     * @return \AppBundle\Entity\Utilisateur 
+     * @return \AppBundle\Entity\Utilisateur
      */
     public function getIdutil()
     {
         return $this->idutil;
     }
 }
+

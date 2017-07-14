@@ -1,0 +1,68 @@
+AppBundle\Entity\User:
+    type: entity
+    table: user
+    uniqueConstraints:
+        UNIQ_USERNAME:
+            columns:
+                - username
+        # UNIQ_EMAIL:
+        #     columns:
+        #         - email
+    fields:
+        username:
+            type: string
+            nullable: false
+            length: 25
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+        previousPassword:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+            column: previous_password
+        email:
+            type: string
+            nullable: false
+            length: 60
+            options:
+                fixed: false
+        isActive:
+            type: boolean
+            nullable: false
+            column: is_active
+        roles:
+            type: array
+            nullable: false
+            length: null
+            options:
+                fixed: false
+        countconnections:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: countConnections
+        lastconnection:
+            type: datetime
+            nullable: true
+            column: lastConnection
+        news:
+            type: boolean
+            nullable: false
+        activationToken:
+            type: string
+            nullable: true
+            length: 64
+            options:
+                fixed: false
+            column: activation_token
+    lifecycleCallbacks: {  }

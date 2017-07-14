@@ -1,0 +1,128 @@
+AppBundle\Entity\Utilisateur:
+    type: entity
+    table: utilisateur
+    indexes:
+        FK_utilisateur_libTyp:
+            columns:
+                - libTyp
+        FK_utilisateur_idQuestion:
+            columns:
+                - idQuestion
+        idQuestion:
+            columns:
+                - idQuestion
+        idQuestion_2:
+            columns:
+                - idQuestion
+    id:
+        idutil:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idUtil
+            generator:
+                strategy: IDENTITY
+    fields:
+        nomutil:
+            type: string
+            nullable: true
+            length: 40
+            options:
+                fixed: false
+            column: nomUtil
+        prenutil:
+            type: string
+            nullable: true
+            length: 40
+            options:
+                fixed: false
+            column: prenUtil
+        passutil:
+            type: string
+            nullable: true
+            length: 32
+            options:
+                fixed: true
+            column: passUtil
+        mailutil:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: mailUtil
+        voieutil:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: voieUtil
+        cputil:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: CPUtil
+        communeutil:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+            column: communeUtil
+        paysutil:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+            column: paysUtil
+        nbconnect:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: nbConnect
+        lastconnect:
+            type: date
+            nullable: true
+            column: lastConnect
+        dossutil:
+            type: string
+            nullable: true
+            length: 75
+            options:
+                fixed: false
+            column: dossUtil
+        news:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+    manyToOne:
+        idquestion:
+            targetEntity: Question
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idQuestion:
+                    referencedColumnName: idQuestion
+            orphanRemoval: false
+        libtyp:
+            targetEntity: Typutil
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                libTyp:
+                    referencedColumnName: libTyp
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,105 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block section_title %}
+    {{ "rocsann.creation.title"|trans }}
+{% endblock %}
+
+{% block admin_body %}
+    {% set creation = form.vars.value %}
+    {% set edit = creation.id is not empty %}
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col s12">
+            <h5 class="header">
+            {{ edit
+                ? "rocsann.creation.edit"|trans({"%creation%": creation.reference})
+                : "rocsann.creation.new"|trans
+                }}
+            </h5>
+            <div class="card horizontal padding-10 z-depth-2">
+                <div class="card-image">
+                    {{ form_row(form.photoFile) }}
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s4">
+                                {{ form_row(form.reference) }}
+                            </div>
+                            <div class="col s8">
+                                {{ form_row(form.label) }}
+                            </div>
+                            <div class="col s4">
+                                {{ form_row(form.category) }}
+                            </div>
+                            <div class="col s4">
+                                {{ form_row(form.form) }}
+                            </div>
+                            <div class="col s4">
+                                {{ form_row(form.price) }}
+                            </div>
+                        </div>
+                        {{ form_row(form.description) }}
+                    </div>
+                    <div class="card-action">
+                        {{ form_row(form.diaporama) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content z-depth-2">
+                    <span class="card-title grey-text text-darken-4">
+                        {{ "rocsann.creation.configuration"|trans }}
+                    </span>
+                </div>
+                <div class="card-tabs">
+                    <ul class="tabs tabs-fixed-width">
+                        <li class="tab"><a href="#materials" class="active">{{ "rocsann.creation.materials"|trans }}</a></li>
+                        <li class="tab"><a href="#accessories">{{ "rocsann.creation.accessories"|trans }}</a></li>
+                    </ul>
+                </div>
+                <div class="card-content grey lighten-4">
+                    <div id="materials">
+                        <div class="row">
+                            {% for child in form.configuration if child.vars.name not in (['accessories']) %}
+                                <div class="col s6">
+                                    {{ form_row(child) }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div id="accessories">
+                        <div class="row">
+                            {% if form.configuration.accessories.count is same as (0) %}
+                                <p class="orange-text right">
+                                    Aucun accessoire assorti, cliquez sur le bouton ci-dessous pour en ajouter
+                                </p>
+                            {% endif %}
+                            {{ form_row(form.configuration.accessories) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            {{ form_row(form.submit) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+        'assets/app/js/formCollection.js'
+     %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

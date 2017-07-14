@@ -1,0 +1,39 @@
+AppBundle\Entity\Creation:
+    type: entity
+    repositoryClass: "AppBundle\\Repository\\CreationRepository"
+    embedded:
+        photo:
+            class: "AppBundle\\Entity\\File"
+    fields:
+        diaporama:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+    manyToOne:
+        form:
+            targetEntity: "AppBundle\\Entity\\Form"
+            cascade: { }
+            fetch: LAZY
+            joinColumns:
+                form_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        category:
+            targetEntity: "AppBundle\\Entity\\Category"
+            cascade: { }
+            fetch: LAZY
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+
+    oneToOne:
+        configuration:
+            targetEntity: "AppBundle\\Entity\\Configuration"
+            inversedBy: creation
+            cascade: ["persist", "remove"]
+            joinColumn:
+                name: configuration_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

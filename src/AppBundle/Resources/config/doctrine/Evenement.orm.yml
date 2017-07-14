@@ -1,0 +1,40 @@
+AppBundle\Entity\Evenement:
+    type: entity
+    table: evenement
+    id:
+        idevt:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idEvt
+            generator:
+                strategy: IDENTITY
+    fields:
+        titreevt:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: titreEvt
+        descrevt:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: descrEvt
+        photoevt:
+            type: blob
+            nullable: false
+            length: null
+            options:
+                fixed: false
+            column: photoEvt
+        dateevt:
+            type: date
+            nullable: false
+            column: dateEvt
+    lifecycleCallbacks: {  }

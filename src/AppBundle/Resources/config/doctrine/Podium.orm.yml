@@ -1,0 +1,59 @@
+AppBundle\Entity\Podium:
+    type: entity
+    table: podium
+    indexes:
+        idUtil:
+            columns:
+                - idUtil
+    id:
+        idphoto:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idPhoto
+            generator:
+                strategy: IDENTITY
+    fields:
+        commentaire:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+        datephoto:
+            type: date
+            nullable: false
+            column: datePhoto
+        forme:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+                default: Autre
+        chemin:
+            type: blob
+            nullable: false
+            length: null
+            options:
+                fixed: false
+        valid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+    manyToOne:
+        idutil:
+            targetEntity: Utilisateur
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUtil:
+                    referencedColumnName: idUtil
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

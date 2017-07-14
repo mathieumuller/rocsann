@@ -1,0 +1,39 @@
+SaleBundle\Model\OrderItem:
+    type: mappedSuperclass
+    uniqueConstraints:
+        UNIQ_ITEM_ORDER_PRODUCT:
+            columns:
+                - order_id
+                - product_id
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        quantity:
+            type: integer
+            nullable: false
+            options:
+                default: 1
+        vat:
+            type: decimal
+            nullable: false
+            precision: 3
+            scale: 2
+
+    manyToOne:
+        order:
+            targetEntity: SaleBundle\Model\OrderInterface
+            cascade: ["persist"]
+            fetch: LAZY
+            joinColumns:
+                order_id:
+                    referencedColumnName: id
+            orphanRemoval: true
+        product:
+            targetEntity: SaleBundle\Model\ProductInterface
+            fetch: LAZY
+            joinColumns:
+                product_id:
+                    referencedColumnName: id

@@ -1,0 +1,54 @@
+SaleBundle\Model\Order:
+    type: mappedSuperclass
+    uniqueConstraints:
+        UNIQ_ORDER_REFERENCE:
+            columns:
+                - reference
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        reference:
+            type: string
+            nullable: false
+            length: 24
+            options:
+                fixed: false
+        status:
+            type: integer
+            nullable: false
+        validationDate:
+            type: datetime
+            nullable: true
+        paymentMode:
+            type: integer
+            nullable: true
+        paymentDate:
+            type: datetime
+            nullable: true
+        deliveryMode:
+            type: integer
+            nullable: true
+        deliveryDate:
+            type: datetime
+            nullable: true
+        cancellationDate:
+            type: datetime
+            nullable: true
+
+
+    manyToOne:
+        deliveryAddress:
+            targetEntity: SaleBundle\Model\AddressInterface
+            fetch: LAZY
+            joinColumns:
+                address_id:
+                    referencedColumnName: id
+        customer:
+            targetEntity: SaleBundle\Model\CustomerInterface
+            fetch: LAZY
+            joinColumns:
+                customer_id:
+                    referencedColumnName: id

@@ -2,10 +2,5 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
 
-admin:
-    resource: '@AppBundle/Controller/Admin'
-    type: annotation
-    prefix: /admin
-
-logout:
-    path: /logout
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"

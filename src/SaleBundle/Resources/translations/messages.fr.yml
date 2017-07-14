@@ -1,0 +1,5 @@
+sale:
+    product:
+        reference: "Référence"
+        label: "Nom"
+        price: "Prix"

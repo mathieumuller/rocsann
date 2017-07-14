@@ -1,0 +1,7 @@
+AppBundle\Entity\Creation:
+    photoFile:
+        mapping:           creations # required
+        filename_property: photo.name    # required
+        size:              photo.size
+        mime_type:         photo.mimeType
+        original_name:     photo.originalName

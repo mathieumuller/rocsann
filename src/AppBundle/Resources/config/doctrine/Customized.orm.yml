@@ -1,0 +1,27 @@
+AppBundle\Entity\Customized:
+    type: entity
+    manyToOne:
+        configuration:
+            targetEntity: AppBundle\Entity\Configuration
+            cascade: ["persist"]
+            fetch: LAZY
+            joinColumns:
+                configuration_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        form:
+            targetEntity: AppBundle\Entity\Form
+            cascade: { }
+            fetch: LAZY
+            joinColumns:
+                form_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        category:
+            targetEntity: AppBundle\Entity\Category
+            cascade: { }
+            fetch: LAZY
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false

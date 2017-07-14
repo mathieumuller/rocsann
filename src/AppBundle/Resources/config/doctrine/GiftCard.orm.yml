@@ -1,0 +1,29 @@
+AppBundle\Entity\GiftCard:
+    type: entity
+    uniqueConstraints:
+        UNIQ_ACCESS_LABEL:
+            columns:
+                - code
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 24
+            options:
+                fixed: true
+        photo:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+
+    manyToOne:
+        category:
+            targetEntity: AppBundle\Entity\Category
+            cascade: { }
+            fetch: LAZY
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false

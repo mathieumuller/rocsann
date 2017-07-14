@@ -2,178 +2,74 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
-use AppBundle\Entity\Methods\UserMethods;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * User.
  */
-class User extends UserMethods implements UserInterface, \Serializable
+class User extends \SaleBundle\Model\Customer
 {
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @ORM\Column(type="string", length=25, unique=true)
+     * @var string
      */
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @var string
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @var string
      */
     private $previousPassword;
 
     /**
-     * @ORM\Column(type="string", length=60, unique=false)
+     * @var string
      */
     private $email;
 
     /**
-     * @ORM\Column(name="is_active", type="boolean")
+     * @var bool
      */
-    private $isActive = true;
+    private $isActive;
 
     /**
-     * @ORM\Column(name="roles", type="array")
+     * @var array
      */
     private $roles;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="lastname", type="string", length=40, nullable=true)
-     */
-    private $lastname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="firstname", type="string", length=40, nullable=true)
-     */
-    private $firstname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="address", type="string", length=255, nullable=true)
-     */
-    private $address;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="address2", type="string", length=255, nullable=true)
-     */
-    private $address2;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="zipCode", type="string", length=10, nullable=true)
-     */
-    private $zipCode;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=50, nullable=true)
-     */
-    private $city;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="country", type="string", length=50, nullable=true)
-     */
-    private $country;
-
-    /**
      * @var int
-     *
-     * @ORM\Column(name="countConnections", type="integer", nullable=false, options={"default": 0})
      */
-    private $countConnections = 0;
+    private $countconnections = '0';
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="lastConnection", type="datetime", nullable=true)
      */
-    private $lastConnection;
+    private $lastconnection;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="news", type="boolean", nullable=false)
+     * @var bool
      */
-    private $newsLetter = false;
+    private $news;
 
-    private $salt;
-
-    public function eraseCredentials()
-    {
-    }
-
-    /** @see \Serializable::serialize() */
-    public function serialize()
-    {
-        return serialize([
-            $this->id,
-            $this->username,
-            $this->password,
-        ]);
-    }
-
-    /** @see \Serializable::unserialize() */
-    public function unserialize($serialized)
-    {
-        list(
-            $this->id,
-            $this->username,
-            $this->password) = unserialize($serialized);
-    }
+    /**
+     * @var string
+     */
+    private $activationToken;
 
     public function __construct()
     {
+        $this->addresses = new ArrayCollection();
     }
 
     /**
-     * Gets the value of id.
+     * Set username.
      *
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Gets the value of username.
+     * @param string $username
      *
-     * @return mixed
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Sets the value of username.
-     *
-     * @param mixed $username the username
-     *
-     * @return self
+     * @return User
      */
     public function setUsername($username)
     {
@@ -183,21 +79,21 @@ class User extends UserMethods implements UserInterface, \Serializable
     }
 
     /**
-     * Gets the value of password.
+     * Get username.
      *
-     * @return mixed
+     * @return string
      */
-    public function getPassword()
+    public function getUsername()
     {
-        return $this->password;
+        return $this->username;
     }
 
     /**
-     * Sets the value of password.
+     * Set password.
      *
-     * @param mixed $password the password
+     * @param string $password
      *
-     * @return self
+     * @return User
      */
     public function setPassword($password)
     {
@@ -207,21 +103,45 @@ class User extends UserMethods implements UserInterface, \Serializable
     }
 
     /**
-     * Gets the value of email.
+     * Get password.
      *
-     * @return mixed
+     * @return string
      */
-    public function getEmail()
+    public function getPassword()
     {
-        return $this->email;
+        return $this->password;
     }
 
     /**
-     * Sets the value of email.
+     * Set previousPassword.
      *
-     * @param mixed $email the email
+     * @param string $previousPassword
      *
-     * @return self
+     * @return User
+     */
+    public function setPreviousPassword($previousPassword)
+    {
+        $this->previousPassword = $previousPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get previousPassword.
+     *
+     * @return string
+     */
+    public function getPreviousPassword()
+    {
+        return $this->previousPassword;
+    }
+
+    /**
+     * Set email.
+     *
+     * @param string $email
+     *
+     * @return User
      */
     public function setEmail($email)
     {
@@ -231,21 +151,21 @@ class User extends UserMethods implements UserInterface, \Serializable
     }
 
     /**
-     * Gets the value of isActive.
+     * Get email.
      *
-     * @return mixed
+     * @return string
      */
-    public function getIsActive()
+    public function getEmail()
     {
-        return $this->isActive;
+        return $this->email;
     }
 
     /**
-     * Sets the value of isActive.
+     * Set isActive.
      *
-     * @param mixed $isActive the is active
+     * @param bool $isActive
      *
-     * @return self
+     * @return User
      */
     public function setIsActive($isActive)
     {
@@ -255,21 +175,21 @@ class User extends UserMethods implements UserInterface, \Serializable
     }
 
     /**
-     * Gets the value of roles.
+     * Get isActive.
      *
-     * @return mixed
+     * @return bool
      */
-    public function getRoles()
+    public function getIsActive()
     {
-        return $this->roles;
+        return $this->isActive;
     }
 
     /**
-     * Sets the value of roles.
+     * Set roles.
      *
-     * @param mixed $roles the roles
+     * @param array $roles
      *
-     * @return self
+     * @return User
      */
     public function setRoles($roles)
     {
@@ -279,290 +199,108 @@ class User extends UserMethods implements UserInterface, \Serializable
     }
 
     /**
-     * Sets the value of id.
+     * Get roles.
      *
-     * @param mixed $id the id
-     *
-     * @return self
+     * @return array
      */
-    public function setId($id)
+    public function getRoles()
     {
-        $this->id = $id;
+        return $this->roles;
+    }
+
+    /**
+     * Set countconnections.
+     *
+     * @param int $countconnections
+     *
+     * @return User
+     */
+    public function setCountconnections($countconnections)
+    {
+        $this->countconnections = $countconnections;
 
         return $this;
     }
 
     /**
-     * Gets the value of lastname.
-     *
-     * @return string
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * Sets the value of lastname.
-     *
-     * @param string $lastname the lastname
-     *
-     * @return self
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    /**
-     * Gets the value of firstname.
-     *
-     * @return string
-     */
-    public function getFirstname()
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * Sets the value of firstname.
-     *
-     * @param string $firstname the firstname
-     *
-     * @return self
-     */
-    public function setFirstname($firstname)
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    /**
-     * Gets the value of address.
-     *
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * Sets the value of address.
-     *
-     * @param string $address the address
-     *
-     * @return self
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * Gets the value of address2.
-     *
-     * @return string
-     */
-    public function getAddress2()
-    {
-        return $this->address2;
-    }
-
-    /**
-     * Sets the value of address2.
-     *
-     * @param string $address2 the address2
-     *
-     * @return self
-     */
-    public function setAddress2($address2)
-    {
-        $this->address2 = $address2;
-
-        return $this;
-    }
-
-    /**
-     * Gets the value of zipCode.
-     *
-     * @return string
-     */
-    public function getZipCode()
-    {
-        return $this->zipCode;
-    }
-
-    /**
-     * Sets the value of zipCode.
-     *
-     * @param string $zipCode the zip code
-     *
-     * @return self
-     */
-    public function setZipCode($zipCode)
-    {
-        $this->zipCode = $zipCode;
-
-        return $this;
-    }
-
-    /**
-     * Gets the value of city.
-     *
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Sets the value of city.
-     *
-     * @param string $city the city
-     *
-     * @return self
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Gets the value of country.
-     *
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * Sets the value of country.
-     *
-     * @param string $country the country
-     *
-     * @return self
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets the value of countConnections.
+     * Get countconnections.
      *
      * @return int
      */
-    public function getCountConnections()
+    public function getCountconnections()
     {
-        return $this->countConnections;
+        return $this->countconnections;
     }
 
     /**
-     * Sets the value of countConnections.
+     * Set lastconnection.
      *
-     * @param int $countConnections the count connections
+     * @param \DateTime $lastconnection
      *
-     * @return self
+     * @return User
      */
-    public function setCountConnections($countConnections)
+    public function setLastconnection($lastconnection)
     {
-        $this->countConnections = $countConnections;
+        $this->lastconnection = $lastconnection;
 
         return $this;
     }
 
     /**
-     * Gets the value of lastConnection.
+     * Get lastconnection.
      *
      * @return \DateTime
      */
-    public function getLastConnection()
+    public function getLastconnection()
     {
-        return $this->lastConnection;
+        return $this->lastconnection;
     }
 
     /**
-     * Sets the value of lastConnection.
+     * Set news.
      *
-     * @param \DateTime $lastConnection the last connection
+     * @param bool $news
      *
-     * @return self
+     * @return User
      */
-    public function setLastConnection(\DateTime $lastConnection)
+    public function setNews($news)
     {
-        $this->lastConnection = $lastConnection;
+        $this->news = $news;
 
         return $this;
     }
 
     /**
-     * Gets the value of newsLetter.
+     * Get news.
      *
-     * @return int
+     * @return bool
      */
-    public function getNewsLetter()
+    public function getNews()
     {
-        return $this->newsLetter;
+        return $this->news;
     }
 
     /**
-     * Sets the value of newsLetter.
+     * Set activationToken.
      *
-     * @param int $newsLetter the news letter
+     * @param string $activationToken
      *
-     * @return self
+     * @return User
      */
-    public function setNewsLetter($newsLetter)
+    public function setActivationToken($activationToken)
     {
-        $this->newsLetter = $newsLetter;
+        $this->activationToken = $activationToken;
 
         return $this;
     }
 
     /**
-     * Gets the value of salt.
+     * Get activationToken.
      *
-     * @return mixed
+     * @return string
      */
-    public function getSalt()
+    public function getActivationToken()
     {
-        return;
-    }
-
-    /**
-     * Gets the value of previousPassword.
-     *
-     * @return mixed
-     */
-    public function getPreviousPassword()
-    {
-        return $this->previousPassword;
-    }
-
-    /**
-     * Sets the value of previousPassword.
-     *
-     * @param mixed $previousPassword the previous password
-     *
-     * @return self
-     */
-    public function setPreviousPassword($previousPassword)
-    {
-        $this->previousPassword = $previousPassword;
-
-        return $this;
+        return $this->activationToken;
     }
 }

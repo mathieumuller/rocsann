@@ -1,0 +1,31 @@
+AppBundle\Entity\Product:
+    type: entity
+    inheritanceType: SINGLE_TABLE
+    discriminatorColumn:
+        name: discr
+        type: string
+    discriminatorMap:
+        crea: Creation
+        custom: Customized
+        access: Accessory
+        gift: GiftCard
+        table: product
+
+    fields:
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+        updatedAt:
+            type: datetime
+            nullable: true
+
+    lifecycleCallbacks:
+        prePersist: [ persist ]
+        preUpdate: [ update ]
+

@@ -1,0 +1,51 @@
+SaleBundle\Model\Address:
+    type: mappedSuperclass
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        street1:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        street2:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        details:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        zipcode:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+        city:
+            type: string
+            nullable: false
+            length: 60
+            options:
+                fixed: false
+        country:
+            type: integer
+            nullable: false
+
+    manyToOne:
+        customer:
+            targetEntity: SaleBundle\Model\CustomerInterface
+            cascade: ["persist"]
+            fetch: LAZY
+            joinColumns:
+                customer_id:
+                    referencedColumnName: id
+            orphanRemoval: true

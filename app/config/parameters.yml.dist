@@ -8,7 +8,7 @@ parameters:
     database_user: root
     database_password: ~
     # You should uncomment this if you want to use pdo_sqlite
-    #database_path: "%kernel.root_dir%/data.db3"
+    #database_path: '%kernel.root_dir%/../var/data/data.sqlite'
 
     mailer_transport: smtp
     mailer_host: 127.0.0.1
@@ -17,4 +17,10 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
-    nodejs_path: "/usr/bin/nodejs"
+
+    # Assetic parameters
+    node_path: "/usr/bin/nodejs"
+    node_modules_path: ["/usr/local/lib/node_modules"]
+    uglifycss_path: "/usr/local/bin/uglifycss"
+    uglifyjs_path: "/usr/local/bin/uglifyjs"
+    web_dir: "%kernel.root_dir%/../web"
